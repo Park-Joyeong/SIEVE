@@ -21,7 +21,7 @@
 </head>
 
 <body>
-
+    {{ res_data }}
     <div class="container">
         <div class="wrapper">
             <div class="signup-logo">
@@ -29,7 +29,8 @@
             </div>
 
             <div class="signup-form">
-                <form>
+                <form action="{% url 'account:signup' %}" method="post">
+                    {% csrf_token %}
                     <div class="signup-form-item">
                         <label for="email">이메일</label>
                         <div>
