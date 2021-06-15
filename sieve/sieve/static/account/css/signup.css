@@ -44,6 +44,12 @@
   color: #006efc;
 }
 
+.signup-error {
+  color: red;
+  font-size: 0.9em;
+  display: none;
+}
+
 .signup-button-box {
   display: block;
   width: 80%;
