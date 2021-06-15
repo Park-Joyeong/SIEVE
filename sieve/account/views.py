@@ -5,10 +5,7 @@ from .models import User
 
 # Create your views here.
 def signup(request) :
-    if request.method == 'GET' :
-        return render(request, 'account/signup.html')
-
-    elif request.method == 'POST' :
+    if request.method == 'POST' :
         email = request.POST.get("email")
         password = request.POST.get("password")
         name = request.POST.get("name")
@@ -39,6 +36,10 @@ def signup(request) :
         res_data['is_success'] = True
         return render(request, 'account/signup.html', {'res_data' : res_data})
         #후에 종목 편집 페이지로 리다이렉트 시켜야함!
+        
+    elif request.method == 'GET' :
+        return render(request, 'account/signup.html')
+
         
 def check_mail(request) :
     if request.method == 'POST' :
