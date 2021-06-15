@@ -38,25 +38,32 @@
             return response.json(); // parses JSON response into native JavaScript objects
         }
 
+        function emailFocusOut() {
+            if (!$("#email").get(0).checkValidity()) {
+                $("#email-error").show();
 
+            } else {
+                $("#email-error").hide();
+                const formData = new FormData();
+                formData.append('email', $("#email").val());
+                postData('./signup/checkmail', formData)
+                    .then(data => {
+                        console.log(data); // JSON data parsed by `data.json()` call
+                    });
+            }
+        };//end of emailFocusOut()
+
+        function nameOnInput() {
+            $("#name-error").hide();
+            var name = $("#name").val();
+            if (name.length === 0 || name.length > 10) {
+                $("#name-error").show();
+                return;
+            }
+        }
 
         $(document).ready(function () {
-            $("#email").focusout(function () {
 
-                if (!this.checkValidity()) {
-                    $("#email-error").show();
-
-                } else {
-                    $("#email-error").hide();
-                    const formData = new FormData();
-                    formData.append('email', $("#email").val());
-                    postData('./signup/checkmail', formData)
-                        .then(data => {
-                            console.log(data); // JSON data parsed by `data.json()` call
-                        });
-                }
-
-            });
         });//end of ready()
     </script>
 </head>
@@ -69,19 +76,23 @@
             </div>
 
             <div class="signup-form">
-                <form action="" method="POST">
+                <form action="./signup" method="POST">
+                    {% csrf_token %}
                     <div class="signup-form-item">
-                        <label for="email">이메일</label>&nbsp;<span id="email-error" class="signup-error">※올바른
+                        <label for="email">이메일</label>&nbsp;
+                        <span id="email-error" class="signup-error">※올바른
                             이메일형식이 아닙니다.</span>
                         <div>
                             <input type="email" id="email" class="signup-input" name="email"
-                                placeholder="mail@website.com" required />
+                                placeholder="mail@website.com" onfocusout="emailFocusOut()" required />
                         </div>
                     </div>
                     <div class="signup-form-item">
-                        <label for="name">이름</label>
+                        <label for="name">이름</label>&nbsp;
+                        <span id="name-error" class="signup-error">※이름을 정확히 입력해주세요.</span>
                         <div>
-                            <input type="text" class="signup-input" name="name" placeholder="홍길동" />
+                            <input type="text" id="name" class="signup-input" name="name" placeholder="홍길동"
+                                maxlength="10" oninput="nameOnInput()" />
                         </div>
                     </div>
                     <div class="signup-form-item">
