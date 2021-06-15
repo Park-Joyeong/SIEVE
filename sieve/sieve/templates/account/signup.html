@@ -46,7 +46,7 @@
                 $("#email-error").hide();
                 const formData = new FormData();
                 formData.append('email', $("#email").val());
-                postData('./signup/checkmail', formData)
+                postData('./signup/checkemail', formData)
                     .then(data => {
                         console.log(data); // JSON data parsed by `data.json()` call
                     });

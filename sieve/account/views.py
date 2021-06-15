@@ -36,16 +36,16 @@ def signup(request) :
         res_data['is_success'] = True
         return render(request, 'account/signup.html', {'res_data' : res_data})
         #후에 종목 편집 페이지로 리다이렉트 시켜야함!
-        
+
     elif request.method == 'GET' :
         return render(request, 'account/signup.html')
 
         
 def check_mail(request) :
     if request.method == 'POST' :
+        print(request)
         new_email = request.Post.get("email")
         res_data = {}
-
         try :
             user = User.objects.get(email = new_email) 
         except User.DoesNotExist: 
