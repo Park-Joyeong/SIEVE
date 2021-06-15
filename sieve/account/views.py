@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from .models import User
 
@@ -45,14 +46,13 @@ def check_mail(request) :
     if request.method == 'POST' :
         print(request)
         new_email = request.Post.get("email")
-        res_data = {}
+        can_use_this_email = False
         try :
             user = User.objects.get(email = new_email) 
         except User.DoesNotExist: 
-            res_data['can_use_this_email'] = True
-            return render(request, 'account/signup.html', {'res_data' : res_data})
-
-        res_data['can_use_this_email'] = False 
-        return render(request, 'account/signup.html', {'res_data' : res_data})
+            can_use_this_email = True
+            return JsonResponse({'can_use_this_email' : can_use_this_email})
+        
+        return JsonResponse({'can_use_this_email' : can_use_this_email})
             
     
