@@ -62,8 +62,21 @@
             }
         }
 
-        $(document).ready(function () {
+        function phoneMask() {
+            var num = $(this).val().replace(/\D/g, '');
+            $(this).val(num.substring(0, 3) + '-' + num.substring(3, 7) + '-' + num.substring(7, 11));
+        }
 
+        function isFormValid(e) {
+            e.preventDefault();
+            var phoneNumber = $('#phone-number').val();
+            phoneNumber = phoneNumber.replaceAll('-', '');
+            $('#phone-number').val(phoneNumber);
+            return true;
+        }
+
+        $(document).ready(function () {
+            $('[type="tel"]').keyup(phoneMask);
         });//end of ready()
     </script>
 </head>
@@ -76,7 +89,7 @@
             </div>
 
             <div class="signup-form">
-                <form action="./signup" method="POST">
+                <form action="./signup" method="POST" onsubmit="return isFormValid();">
                     {% csrf_token %}
                     <div class="signup-form-item">
                         <label for="email">이메일</label>&nbsp;
@@ -105,7 +118,8 @@
                     <div class="signup-form-item">
                         <label for="phone-number">휴대폰 번호</label>
                         <div>
-                            <input type="text" class="signup-input" name="phone-number" placeholder="xxx-xxxx-xxxx" />
+                            <input type="tel" id="phone-number" class="signup-input" name="phone-number"
+                                placeholder="xxx-xxxx-xxxx" />
                         </div>
                     </div>
                     <div class="signup-button-box">
