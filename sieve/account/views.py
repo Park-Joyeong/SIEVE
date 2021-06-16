@@ -55,4 +55,7 @@ def check_mail(request) :
         can_use_this_email = False
         return JsonResponse({'can_use_this_email' : can_use_this_email})
         
-        
+
+def signin(request): 
+    res_data = {}
+    return render(request, 'account/signin.html', {'res_data' : res_data})     
