@@ -20,26 +20,6 @@
     <link rel="stylesheet" href="{% static 'account/css/signup.css' %}" />
     <title>Sieve</title>
     <script>
-        async function postData(url = '', data = {}) {
-            var token = '{{csrf_token}}'
-            // Default options are marked with *
-            const response = await fetch(url, {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
-                headers: {
-                    'Content-Type': 'application/json',
-                    "X-CSRFToken": token
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                redirect: 'follow', // manual, *follow, error
-                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                body: JSON.stringify(data) // body data type must match "Content-Type" header
-            });
-            return response.json(); // parses JSON response into native JavaScript objects
-        }
-
         function emailFocusOut() {
             if (!$("#email").get(0).checkValidity()) {
                 $("#email-error").text('※올바른 이메일형식이 아닙니다.');
@@ -47,9 +27,9 @@
 
             } else {
                 $("#email-error").hide();
-                const formData = new FormData();
-                formData.append('email', $("#email").val());
-                postData('./signup/checkemail', formData)
+
+                fetch('./signup/checkemail?' + 'email=' + $("#email").val())
+                    .then(response => response.json())
                     .then(data => {
                         if (data['can_use_this_email']) {
 
