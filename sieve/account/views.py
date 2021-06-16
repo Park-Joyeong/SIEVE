@@ -1,4 +1,4 @@
-prinfrom django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from .models import User
@@ -57,6 +57,22 @@ def check_mail(request) :
         
 
 def signin(request): 
-    res_data = {}
-    print (res_data)
-    return render(request, 'account/signin.html', {'res_data' : res_data})     
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        res_data = {}
+        if not (email and password) :
+            res_data['error'] = '이메일과 비밀번호 모두 입력해주세요.'
+            return render(request, 'account/signin.html', {'res_data' : res_data})
+        else :
+            user = User.objects.get(email=email)
+            if user.password == password:
+                request.session['user'] = email
+                return redirect('')
+                 #후에 종목 편집 페이지로 리다이렉트
+            else :
+                res_data['error'] = '이메일 또는 비밀번호가 틀립니다.'
+                return render(request, 'account/signin.html', {'res_data' : res_data})
+    else : 
+        return render(request, 'account/signin.html')
+    #return render(request, 'account/signin.html', {'res_data' : res_data})     
