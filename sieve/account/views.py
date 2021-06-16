@@ -20,23 +20,23 @@ def signup(request) :
             error_message = ''
 
             if 'email' in error.message_dict :
-                error_message = error.message_dict['email'][0]
+                error_message = error.message_dict['email']
             elif 'password' in error.message_dict :
-                error_message = error.message_dict['password'][0]
+                error_message = error.message_dict['password']
             elif 'name' in error.message_dict :
-                error_message = error.message_dict['name'][0]
+                error_message = error.message_dict['name']
             else :
-                error_message = error.message_dict['phone_number'][0]
-
+                error_message = error.message_dict['phone_number']
+            
             res_data[ 'error_message'] = error_message
             res_data['is_success'] = False
-            return render(request, 'account/signup.html', {'res_data' : res_data})
+            return JsonResponse(res_data)
 
         new_user.save() 
-        request.session['user_name'] = name
         res_data['is_success'] = True
-        return render(request, 'account/signup.html', {'res_data' : res_data})
-        #후에 종목 편집 페이지로 리다이렉트 시켜야함!
+
+        return JsonResponse(res_data)
+        
 
     elif request.method == 'GET' :
         return render(request, 'account/signup.html')
@@ -44,14 +44,14 @@ def signup(request) :
         
 def check_mail(request) :
     if request.method == 'GET' :
-        print(request)
         new_email = request.GET.get("email")
         
         try :
             user = User.objects.get(email = new_email) 
-        except User.DoesNotExist: 
+        except User.DoesNotExist :  
             can_use_this_email = True
             return JsonResponse({'can_use_this_email' : can_use_this_email})
+
         can_use_this_email = False
         return JsonResponse({'can_use_this_email' : can_use_this_email})
         
