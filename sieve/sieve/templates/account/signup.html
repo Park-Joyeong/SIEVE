@@ -72,6 +72,9 @@
 
         $(document).ready(function () {
             $('[type="tel"]').keyup(phoneMask);
+            if('{{res_data.is_success}}' == 'True') {
+                alert('회원가입이 완료 되었습니다.')
+            }
         });//end of ready()
     </script>
 </head>
@@ -111,9 +114,9 @@
                         </div>
                     </div>
                     <div class="signup-form-item">
-                        <label for="phone-number">휴대폰 번호</label>
+                        <label for="phone_number">휴대폰 번호</label>
                         <div>
-                            <input type="tel" id="phone-number" class="signup-input" name="phone-number"
+                            <input type="tel" class="signup-input" name="phone_number"
                                 placeholder="xxx-xxxx-xxxx" />
                         </div>
                     </div>
