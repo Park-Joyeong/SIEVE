@@ -46,20 +46,22 @@
                         <span id="name-error" class="signup-error">※이름을 정확히 입력해주세요.</span>
                         <div>
                             <input type="text" id="name" class="signup-input" name="name" placeholder="홍길동"
-                                maxlength="10" oninput="nameOnInput()" />
+                                maxlength="10" onkeyup="nameMask()" />
                         </div>
                     </div>
                     <div class="signup-form-item">
                         <label for="password">비밀번호</label>
+                        <span id="password-error" class="signup-error">※8~20자, 소문자, 대문자, 숫자를 포함</span>
                         <div>
-                            <input type="password" class="signup-input" name="password"
-                                placeholder="Min. 8 characters" />
+                            <input type="password" id="password" class="signup-input" name="password"
+                                placeholder="Min. 8 characters" maxlength="20" />
                         </div>
                     </div>
                     <div class="signup-form-item">
                         <label for="phone_number">휴대폰 번호</label>
                         <div>
-                            <input type="tel" class="signup-input" name="phone_number" placeholder="xxx-xxxx-xxxx" />
+                            <input type="tel" class="signup-input" id="phone-number" name="phone_number"
+                                placeholder="xxx-xxxx-xxxx" onkeyup="phoneMask()" />
                         </div>
                     </div>
                     <div class="signup-button-box">
