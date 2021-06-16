@@ -21,6 +21,7 @@
     <title>Sieve</title>
     <script>
         async function postData(url = '', data = {}) {
+            var token = '{{csrf_token}}'
             // Default options are marked with *
             const response = await fetch(url, {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -28,7 +29,8 @@
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', // include, *same-origin, omit
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": token
                     // 'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 redirect: 'follow', // manual, *follow, error
@@ -40,6 +42,7 @@
 
         function emailFocusOut() {
             if (!$("#email").get(0).checkValidity()) {
+                $("#email-error").text('※올바른 이메일형식이 아닙니다.');
                 $("#email-error").show();
 
             } else {
@@ -48,7 +51,12 @@
                 formData.append('email', $("#email").val());
                 postData('./signup/checkemail', formData)
                     .then(data => {
-                        console.log(data); // JSON data parsed by `data.json()` call
+                        if (data['can_use_this_email']) {
+
+                        } else {
+                            $("#email-error").text('이미 가입 된 회원입니다.');
+                            $("#email-error").show();
+                        }
                     });
             }
         };//end of emailFocusOut()
@@ -64,14 +72,21 @@
 
         function phoneMask() {
             var num = $(this).val().replace(/\D/g, '');
-            $(this).val(num.substring(0, 3) + '-' + num.substring(3, 7) + '-' + num.substring(7, 11));
+
+            if (num.length < 3) {
+                return;
+            } else if (num.length >= 3 && num.length < 7) {
+                $(this).val(num.substring(0, 3) + '-' + num.substring(3, 7));
+                return;
+            } else {
+                $(this).val(num.substring(0, 3) + '-' + num.substring(3, 7) + '-' + num.substring(7, 11));
+                return;
+            }
+
         }
 
         function isFormValid(e) {
             e.preventDefault();
-            var phoneNumber = $('#phone-number').val();
-            phoneNumber = phoneNumber.replaceAll('-', '');
-            $('#phone-number').val(phoneNumber);
             return true;
         }
 
