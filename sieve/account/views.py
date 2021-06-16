@@ -45,14 +45,16 @@ def signup(request) :
 def check_mail(request) :
     if request.method == 'POST' :
         print(request)
-        new_email = request.Post.get("email")
+        new_email = request.POST.get("email")
         can_use_this_email = False
         try :
             user = User.objects.get(email = new_email) 
         except User.DoesNotExist: 
             can_use_this_email = True
             return JsonResponse({'can_use_this_email' : can_use_this_email})
+            print("hi")
         
         return JsonResponse({'can_use_this_email' : can_use_this_email})
+        print("hello")
             
     

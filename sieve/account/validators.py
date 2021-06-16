@@ -2,13 +2,13 @@ from django.core.exceptions import ValidationError
 import re
 
 def validate_password(password) : 
-    len_of_min = 8
-    len_of_max = 20
+    min_length = 8
+    max_length = 20
 
-    if len(password) < len_of_min :
+    if len(password) < min_length :
         error_message = '비밀번호가 너무 짧습니다. 8자 이상으로 입력하세요.'
         raise ValidationError(error_message) 
-    elif len(password) > len_of_max :
+    elif len(password) > max_length :
         error_message = '비밀번호가 너무 깁니다. 20자 이하로 입력하세요.'
         raise ValidationError(error_message)
     elif not re.findall('[0-9]+', password) :

@@ -49,7 +49,7 @@
                 $("#email-error").hide();
                 const formData = new FormData();
                 formData.append('email', $("#email").val());
-                postData('./signup/checkemail', formData)
+                postData('{% url 'account:check_email' %}', formData)
                     .then(data => {
                         if (data['can_use_this_email']) {
 
