@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+prinfrom django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from .models import User
@@ -58,4 +58,5 @@ def check_mail(request) :
 
 def signin(request): 
     res_data = {}
+    print (res_data)
     return render(request, 'account/signin.html', {'res_data' : res_data})     
