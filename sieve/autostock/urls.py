@@ -4,5 +4,5 @@ from . import views
 # app_name: autostock
 
 urlpatterns = [
-    # path('hello', views.hello, name = 'hello'),
+    path('interest/edit', views.edit_interest, name = 'Edit interested stocks'),
 ]
