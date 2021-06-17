@@ -5,7 +5,7 @@ function isEmailValidated() {
 function isNameValidated() {
   var name = $("#name").val().trim();
   nameMask();
-  if (name.length == 0 || name.length > 10) {
+  if (name.length == 0 || name.length > 20) {
     return false;
   }
   return true;

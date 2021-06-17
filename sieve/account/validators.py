@@ -25,7 +25,7 @@ def validate_password(password) :
         raise ValidationError(error_message)
 
 def validate_phone_number(phone_number) :
-    reg = re.compile('\d{3}-\d{3,4}-\d{4}')
+    reg = re.compile('\d{3}-\d{4}-\d{4}')
 
     if not re.match(reg, phone_number) :
         error_message = '휴대폰 번호 형식을 지켜주세요.'
