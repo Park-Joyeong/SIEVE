@@ -35,17 +35,13 @@
         </div>
 
         <div class="signin-form">
-          <form
-            action="{% url 'account:signin' %}"
-            method="POST"
-            id="signin-form"
-          >
+          <form id="signin-form">
             {% csrf_token %}
             <div class="signin-form-item">
               <label for="email">이메일</label>
-              <span id="email-error" class="signin-error"
-                >※이메일을 정확히 입력해주세요.</span
-              >
+              <span id="email-error" class="signin-error">
+                {% if res_data.error %} {{ res_data.error }} {% endif %}
+              </span>
               <div>
                 <input
                   type="text"
@@ -67,7 +63,7 @@
               </div>
             </div>
             <div class="signin-button-box">
-              <button type="submit">로그인</button>
+              <button type="button">로그인</button>
             </div>
           </form>
         </div>
