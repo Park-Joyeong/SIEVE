@@ -62,20 +62,22 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-
+        
+        user = User.objects.filter(email=email)[0]
         res_data = {}
-        if not (email and password):
-            res_data['error'] = '이메일과 비밀번호 모두 입력해주세요.'
-            return render(request, 'account/signin.html', {'res_data': res_data})
-        else:
-            user = User.objects.get(email=email)
 
-            if user.password == password:
-                request.session['user'] = email
-                return redirect('./autostock/interest/edit')
-                # 후에 종목 편집 페이지로 리다이렉트
-            else:
-                res_data['error'] = '이메일 또는 비밀번호가 틀립니다.'
-                return render(request, 'account/signin.html', {'res_data': res_data})
+        if  user and (user.password == password) :
+            request.session['user_name'] = user.name
+            request.session['user_email'] = user.email
+            res_data['is_success'] = True
+            res_data['url_to_redirect'] = './signup' #추후에 대시보드로 리다이렉트
+            return JsonResponse(res_data)
+        else :
+            res_data['is_success'] = False
+            res_data['error_message'] = '이메일과 비밀번호를 다시 확인하세요'
+            return JsonResponse(res_data)
+       
     elif request.method == "GET":
+        if request.session.get('user_name') :
+            return redirect('./signup') # 추후에 대시보드로 리다이렉트
         return render(request, 'account/signin.html')
