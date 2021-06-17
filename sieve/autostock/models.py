@@ -1,8 +1,8 @@
 from django.db import models
 
-class Dailytradinginfo(models.Model):
+class DailyTradingInfo(models.Model):
     id = models.BigAutoField(primary_key=True)
-    company_code = models.ForeignKey('Listedcompany', models.DO_NOTHING, db_column='company_code', blank=True, null=True)
+    company_code = models.ForeignKey('ListedCompany', models.DO_NOTHING, db_column='company_code', blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     open = models.BigIntegerField(blank=True, null=True)
     high = models.BigIntegerField(blank=True, null=True)
@@ -12,7 +12,7 @@ class Dailytradinginfo(models.Model):
     volume = models.BigIntegerField(blank=True, null=True)
 
 
-class Listedcompany(models.Model):
+class ListedCompany(models.Model):
     code = models.CharField(primary_key=True, max_length=20)
     company_name = models.CharField(max_length=40, blank=True, null=True)
     updated = models.DateField(blank=True, null=True)
@@ -21,7 +21,7 @@ class Listedcompany(models.Model):
 
 class StocksOfInterest(models.Model):
     user_id = models.ForeignKey('account.User', models.DO_NOTHING, db_column='user_id', blank=True, null=True)
-    company_code = models.ForeignKey('Listedcompany', models.DO_NOTHING, db_column='company_code', blank=True, null=True)
+    company_code = models.ForeignKey('ListedCompany', models.DO_NOTHING, db_column='company_code', blank=True, null=True)
     updated = models.DateField(blank=True, null=True)
 
 
