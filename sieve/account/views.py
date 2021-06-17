@@ -48,9 +48,9 @@ def check_mail(request):
     if request.method == 'GET':
         print(request)
         new_email = request.GET.get("email")
-
         try:
             user = User.objects.get(email=new_email)
+            print(user)
         except User.DoesNotExist:
             can_use_this_email = True
             return JsonResponse({'can_use_this_email': can_use_this_email})
@@ -60,10 +60,9 @@ def check_mail(request):
 
 def signin(request):
     if request.method == 'POST':
-        print(request.POST)
         email = request.POST.get('email')
         password = request.POST.get('password')
-        print(email, password)
+
         res_data = {}
         if not (email and password):
             res_data['error'] = '이메일과 비밀번호 모두 입력해주세요.'

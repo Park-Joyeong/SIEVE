@@ -43,7 +43,7 @@
             {% csrf_token %}
             <div class="signin-form-item">
               <label for="email">이메일</label>
-              <span id="email-error" class="signin-error">
+              <span id="email-error" class="d-none">
                 {% if res_data.error %} {{ res_data.error }} {% endif %}
               </span>
               <div>
@@ -57,6 +57,9 @@
             </div>
             <div class="signin-form-item">
               <label for="password">비밀번호</label>
+              <span id="password-error" class="d-none">
+                {% if res_data.error %} {{ res_data.error }} {% endif %}
+              </span>
               <div>
                 <input
                   type="password"
