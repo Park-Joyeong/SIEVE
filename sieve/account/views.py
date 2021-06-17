@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from .models import User
 
-
+# 숙경 push test
 # Create your views here.
 def signup(request) :
     if request.method == 'POST' :
