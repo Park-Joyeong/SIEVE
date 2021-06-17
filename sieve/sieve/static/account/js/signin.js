@@ -8,31 +8,6 @@ const $passwordError = document.querySelector("#password-error");
 const $signin = document.querySelector("#signin-form");
 const $signinBtn = document.querySelector("#signin-btn");
 
-// const isPasswordValidated = () => {
-//     const password = $password.value;
-//     let regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{8,20}$/g;
-//     if (regex.test(password) === false) {
-//         $passwordError.classList.add("signin-error");
-//         return false;
-//     } else {
-//         $passwordError.classList.remove("signin-error");
-//         return true;
-//     }
-// };
-
-const isEmailExist = async() => {
-    // create formData for fetch
-    let url = "./signin/checkemail?email=" + $email.value;
-
-    // fetch
-    let response = await fetch(url);
-    let result = await response.json();
-    console.log(result);
-    if (result["can_use_this_email"]) {
-        $emailError.classList.add("signin-error");
-    }
-};
-
 const executeSignIn = async() => {
     // create formData for fetch
     let url = "./signin";
@@ -46,10 +21,10 @@ const executeSignIn = async() => {
         method: "POST",
         body: formData,
     });
-    console.log(response);
 
-    // redirect
-    window.location.href = response.url;
+    const result = await response.json();
+
+    return result;
 };
 
 $signinBtn.onclick = async(e) => {
@@ -57,5 +32,11 @@ $signinBtn.onclick = async(e) => {
 
     // isEmailExist();
 
-    await executeSignIn();
+    executeSignIn().then((data) => {
+        if (data["is_success"]) {
+            window.location.href = data["url_to_redirect"];
+        } else {
+            alert(data["error_message"]);
+        }
+    });
 };
