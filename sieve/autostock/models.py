@@ -22,7 +22,7 @@ class ListedCompany(models.Model):
 class StocksOfInterest(models.Model):
     user_id = models.ForeignKey('account.User', models.DO_NOTHING, db_column='user_id', blank=True, null=True)
     company_code = models.ForeignKey('ListedCompany', models.DO_NOTHING, db_column='company_code', blank=True, null=True)
-    updated = models.DateField(blank=True, null=True)
+    created = models.DateField(blank=True, null=True)
 
 
 
