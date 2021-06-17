@@ -6,8 +6,10 @@ function isNameValidated() {
   var name = $("#name").val().trim();
   nameMask();
   if (name.length == 0 || name.length > 20) {
+    $("#name-error").show();
     return false;
   }
+  $("#name-error").hide();
   return true;
 }
 
