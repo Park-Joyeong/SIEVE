@@ -3,8 +3,9 @@ from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from .models import User
 
-
 # Create your views here.
+
+
 def signup(request):
     if request.method == 'POST':
         email = request.POST.get("email")
@@ -69,12 +70,13 @@ def signin(request):
             return render(request, 'account/signin.html', {'res_data': res_data})
         else:
             user = User.objects.get(email=email)
+
             if user.password == password:
                 request.session['user'] = email
-                return redirect('')
+                return redirect('./autostock/interest/edit')
                 # 후에 종목 편집 페이지로 리다이렉트
             else:
                 res_data['error'] = '이메일 또는 비밀번호가 틀립니다.'
                 return render(request, 'account/signin.html', {'res_data': res_data})
-    else:
+    elif request.method == "GET":
         return render(request, 'account/signin.html')

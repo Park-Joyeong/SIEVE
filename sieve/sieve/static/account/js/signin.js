@@ -1,22 +1,30 @@
 const $email = document.querySelector("#email");
 const $password = document.querySelector("#password");
+const $csrfmiddlewaretoken = document.querySelector(
+    "input[name=csrfmiddlewaretoken]"
+);
 const $emailError = document.querySelector("#email-error");
 const $signin = document.querySelector("#signin-form");
+const $signinBtn = document.querySelector("#signin-btn");
 
-$signin.onclick = async(e) => {
-    e.preventDefault();
-
+const executeSignIn = async() => {
     let url = "./signin";
     let formData = new FormData();
-    formData.append("email", $email);
-    formData.append("password", $password);
+    formData.append("email", $email.value);
+    formData.append("password", $password.value);
+    formData.append("csrfmiddlewaretoken", $csrfmiddlewaretoken.value);
     let response = await fetch(url, {
         method: "POST",
         body: formData,
     });
+    console.log(response);
+    window.location.href = response.url;
+};
 
-    let result = await response.json();
-    console.log("Success: ", result);
+$signinBtn.onclick = async(e) => {
+    e.preventDefault();
+
+    /* 유효성 검사 */
     // let url = "./signin/checkemail";
     // let data = {
     //     email: $email.value,
@@ -35,4 +43,5 @@ $signin.onclick = async(e) => {
     // //     $emailError.text("가입되지 않은 이메일입니다.");
     // //     $emailError.show();
     // // }
+    await executeSignIn();
 };

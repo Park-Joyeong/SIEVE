@@ -35,7 +35,11 @@
         </div>
 
         <div class="signin-form">
-          <form id="signin-form">
+          <form
+            id="signin-form"
+            action="{% url 'account:signin' %}"
+            method="POST"
+          >
             {% csrf_token %}
             <div class="signin-form-item">
               <label for="email">이메일</label>
@@ -63,7 +67,7 @@
               </div>
             </div>
             <div class="signin-button-box">
-              <button type="button">로그인</button>
+              <button type="button" id="signin-btn">로그인</button>
             </div>
           </form>
         </div>
