@@ -17,7 +17,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="{% static 'base/css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'autostock/css/autostock.css' %}" />
+    <link rel="stylesheet" href="{% static 'autostock/css/interest_edit.css' %}" />
     <title>Sieve</title>
 
     <script>
@@ -30,33 +30,53 @@
 </head>
 
 <body>
-    <br />
-    <br />
-    <h4>수신받은 데이터(listedCompany):</h4> <br />
-        {{listed_company}}
-    <hr />
-    <br />
-    <h4>수신받은 데이터(listedCompany):</h4> <br />
-    {{stocks_of_interest}}
-    <hr />
-    <h4>데이터 전송:</h4><br />
-    <button onclick="test(0)">selected:[] 전송</button>
-    <br /><br />
-    <button onclick="test(1)">selected:['001122'] 전송(삼성전자)</button>
-    <br /><br />
-    <button onclick="test(2)">selected:['001122', '068270'] 전송(삼성전자, 셀트리온)</button>
-    <br />
-    <br />
-    {% csrf_token %}
     <div class="container">
         <div class="wrapper">
-            <p class="h2">관심 종목 설정하기</p>
+            <h2 class="text-menu-title">관심 종목 설정하기</h2>
+            <div class="container-listed-company">
+                <div class="area-stocks-list-title">
+                    <span class="text-stocks-list-title">전체 종목</span>
+                </div>
+                <div class="contents-listed-company">
+                    <div class="item-listed-company">
+                        <div><span></span><span></span></div>
+                        <div><span></span><span></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-stocks-of-interest">
+                <div class="area-stocks-list-title">
+                    <span class="text-stocks-list-title">관심 종목</span>
+                </div>
+                <div class="contents-stocks-of-interest">
 
+                </div>
+            </div>
+            <button>저장</button>
+
+
+
+            <br/>
+                        <br />
+            <br />
+            <h4>수신받은 데이터(listedCompany):</h4> <br />
+            {{listed_company}}
+            <hr />
+            <br />
+            <h4>수신받은 데이터(listedCompany):</h4> <br />
+            {{stocks_of_interest}}
+            <hr />
+            <h4>데이터 전송:</h4><br />
+            <button onclick="test(0)">selected:[] 전송</button>
+            <br /><br />
+            <button onclick="test(1)">selected:['001122'] 전송(삼성전자)</button>
+            <br /><br />
+            <button onclick="test(2)">selected:['001122', '068270'] 전송(삼성전자, 셀트리온)</button>
+            <br />
+            <br />
             <div id="" class="" style="border: 1px solid rgba(238, 238, 238, 0.75);
             box-sizing: border-box;
             border-radius: 3px;">
-                <h2 style="background: rgba(238, 238, 238, 0.75);
-                border-radius: 3px 3px 0px 0px;">전체 종목</h2>
                 <div class="list-group">
                     <div class="list-group-item list-group-item-primary">
                         <div class="d-flex w-100 justify-content-between">
@@ -124,7 +144,8 @@
 
         </div> <!-- End of .wrapper-->
     </div> <!-- End of .container-->
-    <script src="{% static 'autostock/js/autostock.js' %}"></script>
+    {% csrf_token %}
+    <script src="{% static 'autostock/js/interest_edit.js' %}"></script>
 </body>
 
 </html>
