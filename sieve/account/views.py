@@ -46,11 +46,9 @@ def signup(request):
 
 def check_mail(request):
     if request.method == 'GET':
-        print(request)
         new_email = request.GET.get("email")
         try:
             user = User.objects.get(email=new_email)
-            print(user)
         except User.DoesNotExist:
             can_use_this_email = True
             return JsonResponse({'can_use_this_email': can_use_this_email})
@@ -64,6 +62,7 @@ def signin(request):
         password = request.POST.get('password')
         
         user = User.objects.filter(email=email)[0]
+        
         res_data = {}
 
         if  user and (user.password == password) :
@@ -72,6 +71,7 @@ def signin(request):
             res_data['is_success'] = True
             res_data['url_to_redirect'] = './signup' #추후에 대시보드로 리다이렉트
             return JsonResponse(res_data)
+
         else :
             res_data['is_success'] = False
             res_data['error_message'] = '이메일과 비밀번호를 다시 확인하세요'
