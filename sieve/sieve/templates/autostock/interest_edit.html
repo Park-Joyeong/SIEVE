@@ -24,22 +24,29 @@
         window.onload = (event) => {
             var listedCompany = JSON.parse('{{ listed_company | safe }}')
             var stocksOfInterest = JSON.parse('{{ stocks_of_interest | safe }}')
-            componentRendering({listedCompany:listedCompany, stocksOfInterest:stocksOfInterest});
+            componentRendering({ listedCompany: listedCompany, stocksOfInterest: stocksOfInterest });
         };
     </script>
 </head>
 
 <body>
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <h4>수신받은 데이터(listedCompany):</h4> <br />
+        {{listed_company}}
+    <hr />
+    <br />
+    <h4>수신받은 데이터(listedCompany):</h4> <br />
+    {{stocks_of_interest}}
+    <hr />
+    <h4>데이터 전송:</h4><br />
     <button onclick="test(0)">selected:[] 전송</button>
-    <br/><br/>
+    <br /><br />
     <button onclick="test(1)">selected:['001122'] 전송(삼성전자)</button>
-    <br/><br/>
+    <br /><br />
     <button onclick="test(2)">selected:['001122', '068270'] 전송(삼성전자, 셀트리온)</button>
-    <br/>
-    <br/>
+    <br />
+    <br />
     {% csrf_token %}
     <div class="container">
         <div class="wrapper">
