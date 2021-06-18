@@ -30,6 +30,17 @@
 </head>
 
 <body>
+    <br/>
+    <br/>
+    <br/>
+    <button onclick="test(0)">selected:[] 전송</button>
+    <br/><br/>
+    <button onclick="test(1)">selected:['001122'] 전송(삼성전자)</button>
+    <br/><br/>
+    <button onclick="test(2)">selected:['001122', '068270'] 전송(삼성전자, 셀트리온)</button>
+    <br/>
+    <br/>
+    {% csrf_token %}
     <div class="container">
         <div class="wrapper">
             <p class="h2">관심 종목 설정하기</p>
