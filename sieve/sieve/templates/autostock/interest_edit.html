@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="{% static 'base/css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'autostock/css/autostock.css' %}" />
     <title>Sieve</title>
+
+    <script>
+        window.onload = (event) => {
+            var listedCompany = JSON.parse('{{ listed_company | safe }}')
+            var stocksOfInterest = JSON.parse('{{ stocks_of_interest | safe }}')
+            componentRendering({listedCompany:listedCompany, stocksOfInterest:stocksOfInterest});
+        };
+    </script>
 </head>
 
 <body>
@@ -98,6 +106,7 @@
 
         </div> <!-- End of .wrapper-->
     </div> <!-- End of .container-->
+    <script src="{% static 'autostock/js/autostock.js' %}"></script>
 </body>
 
 </html>
