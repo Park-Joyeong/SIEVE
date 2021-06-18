@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
 
-# app_name: autostock
+
+app_name = 'autostock'
 
 urlpatterns = [
-    # path('hello', views.hello, name = 'hello'),
+    path('interest/edit/', views.edit_interest, name="edit_interest"),
 ]
