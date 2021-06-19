@@ -15,8 +15,8 @@ function renderListedCompany(listedCompany) {
   listedCompany.forEach(function () {
     var ele = $itemListedCompany.cloneNode(true);
 
-    console.log("origin");
-    console.log(parent);
+    // console.log("origin");
+    // console.log(parent);
     // console.log('next');
     // console.log(origin.children);
 
@@ -25,6 +25,7 @@ function renderListedCompany(listedCompany) {
 }
 
 function renderStocksOfInterest(stocksOfInterest) {
+  console.log('stocksOfInterest');
   console.log(stocksOfInterest);
 }
 
