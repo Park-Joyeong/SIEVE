@@ -49,8 +49,6 @@ def edit_interest(request):
         # (추가일자는 최초에 관심종목으로 지정한 날짜 기준)
         # 이번 선택 리스트에 있지만, 이전에는 없었던 회사들을 관심종목으로 DB에 추가
         # (추가일자는 현재 시점의 일자 사용)
-        # already_selected = {row.company_code
-        #                     for row in qs_stocks_of_interest}  # set comprehension
 
         # DB에 있는 데이터 불러오기
         qs_stocks_of_interest = StocksOfInterest.objects.all()
@@ -77,27 +75,5 @@ def edit_interest(request):
                     
 
             
-
-            
-
-
-            
-
-            
-            # if company_code == '':
-            #     print('go')
-            #     StocksOfInterest.objects.get(user_id=user.id).delete()
-            #     print('end')
-            #     continue
-            # # if company_code in already_selected:  # 이미 관심종목이면 패스
-            # #     continue
-            # # 새로운 관심종목들을 하나씩 DB에 추가
-            # var_user_id = User.objects.get(id=user.id)
-            # var_company_code = ListedCompany.objects.get(code=company_code)
-            # current_date = datetime.now().strftime('%Y-%m-%d')  # 현재 날짜를 가져와서 적절한 포맷으로 변환
-
-            # row = StocksOfInterest(
-            #     user_id=var_user_id, company_code=var_company_code, created=current_date)
-            # row.save()
 
         return redirect('autostock/dashboard')  # 저장 후에는 dashboard로 이동
