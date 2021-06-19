@@ -37,13 +37,13 @@ def edit_interest(request):
         selected_company_list = selected_company_str.split(',')
     
         # 현재 사용자의 관심종목이었지만, 이번에는 선택되지 않은 회사들을 삭제
-        # qs_stocks_of_interest = StocksOfInterest.objects.all()
-        # qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user.id)
-        # qs_stocks_of_interest_delete = None
-        # for selected_company in selected_company_list:
-        #     qs_stocks_of_interest_delete = qs_stocks_of_interest.exclude(
-        #         company_code=selected_company)
-        # qs_stocks_of_interest_delete.delete()
+        qs_stocks_of_interest = StocksOfInterest.objects.all()
+        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user.id)
+        qs_stocks_of_interest_delete = None
+        for selected_company in selected_company_list:
+            qs_stocks_of_interest_delete = qs_stocks_of_interest.exclude(
+                company_code=selected_company)
+        qs_stocks_of_interest_delete.delete()
         
         # 현재 사용자의 관심종목(b,c)이었고, 이번에도 선택된 회사(b,c,d)들은 아무 처리도 하지 않음
         # (추가일자는 최초에 관심종목으로 지정한 날짜 기준)
@@ -60,24 +60,23 @@ def edit_interest(request):
         #selected_company_list
         
 
-        # 
-        for entity in qs_stocks_of_interest.iterator():
-            for selected_company in selected_company_list:
-                print('entity.user_id')
-                print(entity.user_id)
-                print(type(entity.user_id))
-                print('')
-                # model 
-                print('entity.company_code')
-                print(entity.company_code.code)
-                print(type(entity.company_code))
-                print('')
-                # number
-                print(selected_company)
+        # 바깥 for문 (기존선택배열) 내부 for문(새로운선택배열) 
+        # 하고 싶은것: 기존배열에 없으면 추가!
+        
+        for selected_company in selected_company_list:
+            is_null = True
+            for entity in qs_stocks_of_interest.iterator():
                 if str(entity.company_code.code) == selected_company:
-                    continue
-                else:
-                    entity.delete()
+                    is_null = False
+            if is_null:
+                listedCompany = ListedCompany.objects.get(code=selected_company)
+                current_date = datetime.now().strftime('%Y-%m-%d')
+                row = StocksOfInterest(
+                    user_id=user, company_code=listedCompany, created=current_date)
+                row.save()
+                    
+
+            
 
             
 
