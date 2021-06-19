@@ -50,7 +50,7 @@ button {
   height: 80%;
 }
 
-.area-stocks-list-title {
+.area-list-title {
   height: 15%;
   background: rgba(238, 238, 238, 0.75);
   border-radius: 3px 3px 0px 0px;
@@ -73,7 +73,7 @@ button {
   color: rgba(136, 136, 136, 0.75);
 }
 
-.item-content-list {
+.item-list {
   border: 1px solid #eeeeee;
   border-radius: 3px;
   

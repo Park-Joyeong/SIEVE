@@ -34,54 +34,15 @@
         <div class="wrapper">
             <h2 class="text-menu-title">관심 종목 설정하기</h2>
             <div class="container-listed-company">
-                <div class="area-stocks-list-title">
+                <div class="area-list-title">
                     <span class="text-stocks-list-title">전체 종목</span>
                 </div>
-                <div class="contents-listed-company area-content-list">
-                    <div class="item-listed-company item-content-list">
-                        <div>
-                            <span class="company-name">셀트리온</span>
-                            <span class="code">068270</span>
-                        </div>
-                        <div>
-                            <span class="updated">2021.06.15</span>
-                            <span class="category">의약품</span>
-                        </div>
-                    </div>
-                    <div class="item-listed-company item-content-list">
-                        <div>
-                            <span class="company-name">셀트리온</span>
-                            <span class="code">068270</span>
-                        </div>
-                        <div>
-                            <span class="updated">2021.06.15</span>
-                            <span class="category">의약품</span>
-                        </div>
-                    </div>
-                    <div class="item-listed-company item-content-list">
-                        <div>
-                            <span class="company-name">셀트리온</span>
-                            <span class="code">068270</span>
-                        </div>
-                        <div>
-                            <span class="updated">2021.06.15</span>
-                            <span class="category">의약품</span>
-                        </div>
-                    </div>
-                    <div class="item-listed-company item-content-list">
-                        <div>
-                            <span class="company-name">셀트리온</span>
-                            <span class="code">068270</span>
-                        </div>
-                        <div>
-                            <span class="updated">2021.06.15</span>
-                            <span class="category">의약품</span>
-                        </div>
-                    </div>
+                <div id="contents-listed-company" class="contents-listed-company area-content-list">
+                    
                 </div>
             </div>
             <div class="container-stocks-of-interest">
-                <div class="area-stocks-list-title">
+                <div class="area-list-title">
                     <span class="text-stocks-list-title">관심 종목</span>
                 </div>
                 <div class="contents-stocks-of-interest area-content-list">
@@ -180,6 +141,17 @@
 
         </div> <!-- End of .wrapper-->
     </div> <!-- End of .container-->
+
+    <div class="item-listed-company item-list">
+        <div>
+            <span class="company-name">셀트리온</span>
+            <span class="code">068270</span>
+        </div>
+        <div>
+            <span class="updated">2021.06.15</span>
+            <span class="category">의약품</span>
+        </div>
+    </div>
     {% csrf_token %}
     <script src="{% static 'autostock/js/interest_edit.js' %}"></script>
 </body>
