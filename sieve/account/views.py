@@ -3,21 +3,24 @@ from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from .models import User
 
-# 숙경 push test
 # Create your views here.
-def signup(request) :
-    if request.method == 'POST' :
+
+
+def signup(request):
+    if request.method == 'POST':
         email = request.POST.get("email")
         password = request.POST.get("password")
         name = request.POST.get("name")
         phone_number = request.POST.get("phone_number")
         res_data = {}
-        
-        new_user = User(email=email, password=password, name=name, phone_number=phone_number)
-        try :
+
+        new_user = User(email=email, password=password,
+                        name=name, phone_number=phone_number)
+        try:
             new_user.full_clean()
-        except ValidationError as error :
+        except ValidationError as error:
             error_message = ''
+
 
             if 'email' in error.message_dict :
                 error_message = error.message_dict['email']
@@ -37,10 +40,8 @@ def signup(request) :
 
         return JsonResponse(res_data)
         
-
-    elif request.method == 'GET' :
+    elif request.method == 'GET':
         return render(request, 'account/signup.html')
-
         
 def check_mail(request) :
     if request.method == 'GET' :
@@ -53,6 +54,34 @@ def check_mail(request) :
             return JsonResponse({'can_use_this_email' : can_use_this_email})
 
         can_use_this_email = False
-        return JsonResponse({'can_use_this_email' : can_use_this_email})
+        return JsonResponse({'can_use_this_email': can_use_this_email})
+
+
+def signin(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
         
+        user = User.objects.filter(email=email)[0]
         
+        res_data = {}
+
+        if  user and (user.password == password) :
+            request.session['user_name'] = user.name
+            request.session['user_email'] = user.email
+            res_data['is_success'] = True
+            res_data['url_to_redirect'] = './signup' #추후에 대시보드로 리다이렉트
+            return JsonResponse(res_data)
+
+        else :
+            res_data['is_success'] = False
+            res_data['error_message'] = '이메일과 비밀번호를 다시 확인하세요'
+            return JsonResponse(res_data)
+       
+    elif request.method == "GET":
+        if request.session.get('user_name') :
+            print(request.session)
+            print(request.session.get('user_name'))
+            print(request.session.get('user_email'))
+            return redirect('./signup') # 추후에 대시보드로 리다이렉트
+        return render(request, 'account/signin.html')
