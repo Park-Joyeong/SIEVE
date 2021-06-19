@@ -39,13 +39,12 @@ def edit_interest(request):
         # 현재 사용자의 관심종목이었지만, 이번에는 선택되지 않은 회사들을 삭제
         qs_stocks_of_interest = StocksOfInterest.objects.all()
         qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user.id)
-        qs_stocks_of_interest_delete = None
         for selected_company in selected_company_list:
-            qs_stocks_of_interest_delete = qs_stocks_of_interest.exclude(
+            qs_stocks_of_interest = qs_stocks_of_interest.exclude(
                 company_code=selected_company)
-        qs_stocks_of_interest_delete.delete()
-        
-        # 현재 사용자의 관심종목(b,c)이었고, 이번에도 선택된 회사(b,c,d)들은 아무 처리도 하지 않음
+
+        qs_stocks_of_interest.delete()
+        # 현재 사용자의 관심종목(b,c)이었고, 이번에도 선택된 회사(b,c,d)의 교집합은 아무 처리도 하지 않음
         # (추가일자는 최초에 관심종목으로 지정한 날짜 기준)
         # 이번 선택 리스트에 있지만, 이전에는 없었던 회사들을 관심종목으로 DB에 추가
         # (추가일자는 현재 시점의 일자 사용)
@@ -54,19 +53,11 @@ def edit_interest(request):
         qs_stocks_of_interest = StocksOfInterest.objects.all()
         qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user.id)
 
-        # 내 선택 리스트 불러오기 
-        #selected_company_list
-        
 
-        # 바깥 for문 (기존선택배열) 내부 for문(새로운선택배열) 
-        # 하고 싶은것: 기존배열에 없으면 추가!
-        
         for selected_company in selected_company_list:
-            is_null = True
-            for entity in qs_stocks_of_interest.iterator():
-                if str(entity.company_code.code) == selected_company:
-                    is_null = False
-            if is_null:
+            
+            # 없는 데이터는 DB에 추가 
+            if StocksOfInterest.objects.filter(user_id=user.id, company_code=selected_company).count() == 0:
                 listedCompany = ListedCompany.objects.get(code=selected_company)
                 current_date = datetime.now().strftime('%Y-%m-%d')
                 row = StocksOfInterest(
@@ -74,6 +65,6 @@ def edit_interest(request):
                 row.save()
                     
 
-            
-
-        return redirect('autostock/dashboard')  # 저장 후에는 dashboard로 이동
+            res_data = {}
+            res_data['is_success'] = True
+        return JsonResponse(res_data)
