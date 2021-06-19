@@ -4,6 +4,7 @@ from django.core import serializers
 from .models import DailyTradingInfo, ListedCompany, StocksOfInterest
 import datetime
 
+<<<<<<< HEAD
 def edit_interest(request):
     if 'user_id' not in request.session: # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
         return redirect('account/login')
