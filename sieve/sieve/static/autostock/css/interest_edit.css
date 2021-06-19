@@ -38,22 +38,28 @@ button {
   color: #006efc;
 }
 
-.container-listed-company {
-  background-color: #8583e070;
-  height: 30%;
+.container-listed-company,
+.container-stocks-of-interest {
+  height: 35%;
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
 }
 
-.container-stocks-of-interest {
-  background-color: #f8757570;
-  height: 30%;
+.area-content-list {
+  overflow: auto;
+  height: 80%;
 }
 
 .area-stocks-list-title {
-  height: 29px;
+  height: 15%;
   background: rgba(238, 238, 238, 0.75);
   border-radius: 3px 3px 0px 0px;
   text-align: center;
 }
+
+
+
+
 
 .text-stocks-list-title {
   font-family: Verdana;
@@ -65,6 +71,55 @@ button {
   vertical-align: middle;
 
   color: rgba(136, 136, 136, 0.75);
+}
+
+.item-content-list {
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
+  
+  padding: 3px 10px;
+}
+
+.company-name {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #000000;
+}
+
+.code {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+
+  float: right;
+  color: #000000;
+}
+
+.updated {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+
+  color: #000000;
+}
+
+.category {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+
+  float: right;
+  color: #000000;
 }
 
 @media (min-width: 576px) {
