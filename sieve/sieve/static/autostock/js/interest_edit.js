@@ -148,5 +148,13 @@ function save() {
     body: formData,
   })
     .then((response) => response.json())
-    .then((data) => {});
+    .then((data) => {
+      if(data.is_success == true) {
+        alert('저장완료.');
+        window.location.href = "/dashboard/show";
+      } else {
+        console.log('false');
+      }
+      
+    });
 }
