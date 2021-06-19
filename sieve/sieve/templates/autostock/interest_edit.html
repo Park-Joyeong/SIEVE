@@ -1,1 +1,70 @@
-관심 종목 편집 페이지입니다.
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'bootstrap-4.6.0-dist/css/bootstrap.min.css' %}" />
+    <script src="{% static 'base/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap-4.6.0-dist/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'base/css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'autostock/css/interest_edit.css' %}" />
+    <title>Sieve</title>
+
+    <script>
+        window.onload = (event) => {
+            var listedCompany = JSON.parse('{{ listed_company | safe }}')
+            var stocksOfInterest = JSON.parse('{{ stocks_of_interest | safe }}')
+            componentRendering({ listedCompany: listedCompany, stocksOfInterest: stocksOfInterest });
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="text-menu-title">관심 종목 설정하기</h2>
+            <div class="container-listed-company">
+                <div class="area-list-title">
+                    <span class="text-stocks-list-title">전체 종목</span>
+                </div>
+                <div id="contents-listed-company" class="contents-listed-company area-content-list">
+
+                </div>
+            </div>
+            <div class="container-stocks-of-interest">
+                <div class="area-list-title">
+                    <span class="text-stocks-list-title">관심 종목</span>
+                </div>
+                <div id="contents-interest-company" class="contents-interest-company area-content-list">
+
+                </div>
+            </div>
+            <button onClick="save()">저장</button>
+        </div> <!-- End of .wrapper-->
+    </div> <!-- End of .container-->
+
+    <div class="list-item" ondblclick="onDoubleClicked(this);">
+        <div>
+            <span class="company-name"></span>
+            <span class="code"></span>
+        </div>
+        <div>
+            <span class="updated"></span>
+            <span class="category"></span>
+        </div>
+    </div>
+    {% csrf_token %}
+    <script src="{% static 'autostock/js/interest_edit.js' %}"></script>
+</body>
+
+</html>

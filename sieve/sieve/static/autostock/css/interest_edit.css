@@ -1,0 +1,142 @@
+/* 자식에서 height 속성값으로 %를 쓰려고 */
+html,
+body,
+.container,
+.wrapper {
+  height: 100%;
+}
+
+.wrapper {
+  display: block;
+  width: 360px;
+  margin: auto;
+  /* background: aliceblue; */
+  position: relative;
+  top: 12vh;
+}
+
+button {
+  display: block;
+  width: 100%;
+  height: 39px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #006efc;
+  margin-top: 20px;
+  border: 1px solid #006efc;
+  font-weight: bold;
+  color: #fff;
+}
+
+.text-menu-title {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #006efc;
+}
+
+.container-listed-company,
+.container-stocks-of-interest {
+  height: 35%;
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
+}
+
+.area-content-list {
+  overflow: auto;
+  height: 80%;
+}
+
+.area-list-title {
+  height: 15%;
+  background: rgba(238, 238, 238, 0.75);
+  border-radius: 3px 3px 0px 0px;
+  text-align: center;
+}
+
+.text-stocks-list-title {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+
+  vertical-align: middle;
+
+  color: rgba(136, 136, 136, 0.75);
+}
+
+.list-item {
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
+
+  padding: 3px 10px;
+}
+
+.company-name {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #000000;
+}
+
+.code {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+
+  float: right;
+  color: #000000;
+}
+
+.updated {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+
+  color: #000000;
+}
+
+.category {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+
+  float: right;
+  color: #000000;
+}
+
+.active {
+  background: #006efc;
+}
+.active > div > span {
+  color: #ffffff;
+}
+
+.contents-interest-company span {
+  color: #006EFC;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

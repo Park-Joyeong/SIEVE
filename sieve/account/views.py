@@ -83,5 +83,5 @@ def signin(request):
             print(request.session)
             print(request.session.get('user_name'))
             print(request.session.get('user_email'))
-            return redirect('./signup') # 추후에 대시보드로 리다이렉트
+            return redirect('./interest/edit') # 추후에 대시보드로 리다이렉트
         return render(request, 'account/signin.html')
