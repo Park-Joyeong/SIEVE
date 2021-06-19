@@ -57,10 +57,6 @@ button {
   text-align: center;
 }
 
-
-
-
-
 .text-stocks-list-title {
   font-family: Verdana;
   font-style: normal;
@@ -73,10 +69,10 @@ button {
   color: rgba(136, 136, 136, 0.75);
 }
 
-.item-list {
+.list-item {
   border: 1px solid #eeeeee;
   border-radius: 3px;
-  
+
   padding: 3px 10px;
 }
 
@@ -120,6 +116,13 @@ button {
 
   float: right;
   color: #000000;
+}
+
+.active {
+  background: #006efc;
+}
+.active > div > span {
+  color: #FFFFFF;
 }
 
 @media (min-width: 576px) {

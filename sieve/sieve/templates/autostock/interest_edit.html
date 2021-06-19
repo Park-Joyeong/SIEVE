@@ -45,23 +45,17 @@
                 <div class="area-list-title">
                     <span class="text-stocks-list-title">관심 종목</span>
                 </div>
-                <div class="contents-stocks-of-interest area-content-list">
+                <div id="contents-interest-company" class="contents-stocks-of-interest area-content-list">
 
                 </div>
             </div>
-            <button>저장</button>
+            <button onClick="save()">저장</button>
 
 
-
-            <br />
-            <br />
-            <br />
-            <h4>수신받은 데이터(listedCompany):</h4> <br />
-            {{listed_company}}
-            <hr />
-            <br />
-            <h4>수신받은 데이터(listedCompany):</h4> <br />
-            {{stocks_of_interest}}
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <hr />
             <h4>데이터 전송:</h4><br />
             <button onclick="test(0)">selected:[] 전송</button>
@@ -74,82 +68,20 @@
             <div id="" class="" style="border: 1px solid rgba(238, 238, 238, 0.75);
             box-sizing: border-box;
             border-radius: 3px;">
-                <div class="list-group">
-                    <div class="list-group-item list-group-item-primary">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">종목 이름</h5>
-                            <small>종목 코드</small>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>2021.06.15</small>
-                            <small>업종</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">셀트리온</h5>
-                            <small>068270</small>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>2021.06.15</small>
-                            <small>의약품</small>
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-info">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">삼성전자</h5>
-                            <small>005930</small>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>2021.06.15</small>
-                            <small>전기전자</small>
-                        </div>
-                    </div>
-                    <div class="list-group-item">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">NAVER</h5>
-                            <small>035420</small>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>2021.06.15</small>
-                            <small>서비스업</small>
-                        </div>
-                    </div>
-                </div><!-- .list-group -->
             </div><!-- 전체 종목 -->
 
-            <div id="" class="" style="border: 1px solid rgba(238, 238, 238, 0.75);
-            box-sizing: border-box;
-            border-radius: 3px;">
-                <h2 style="background: rgba(238, 238, 238, 0.75);
-                border-radius: 3px 3px 0px 0px;">관심 종목</h2>
-                <div class="list-group">
-                    <div class="list-group-item list-group-item-info">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">삼성전자</h5>
-                            <small>005930</small>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>2021.06.15</small>
-                            <small>전기전자</small>
-                        </div>
-                    </div>
-                </div><!-- .list-group -->
-            </div><!-- 관심 종목 -->
 
         </div> <!-- End of .wrapper-->
     </div> <!-- End of .container-->
 
-    <div class="item-listed-company item-list">
+    <div class="list-item" ondblclick="onDoubleClicked(this);">
         <div>
-            <span class="company-name">셀트리온</span>
-            <span class="code">068270</span>
+            <span class="company-name"></span>
+            <span class="code"></span>
         </div>
         <div>
-            <span class="updated">2021.06.15</span>
-            <span class="category">의약품</span>
+            <span class="updated"></span>
+            <span class="category"></span>
         </div>
     </div>
     {% csrf_token %}
