@@ -35,36 +35,51 @@ def edit_interest(request):
         # 선택한 관심종목들을 리스트로 전달받음
         selected_company_str = request.POST['selected']
         selected_company_list = selected_company_str.split(',')
+    
         # 현재 사용자의 관심종목이었지만, 이번에는 선택되지 않은 회사들을 삭제
-        qs_stocks_of_interest = StocksOfInterest.objects.all()
-        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=2)
-        for selected_company in selected_company_list:
-            qs_stocks_of_interest_delete = qs_stocks_of_interest.exclude(
-                company_code=selected_company)
-        qs_stocks_of_interest_delete.delete()
-
-        # 현재 사용자의 관심종목이었고, 이번에도 선택된 회사들은 아무 처리도 하지 않음
+        # qs_stocks_of_interest = StocksOfInterest.objects.all()
+        # qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user.id)
+        # qs_stocks_of_interest_delete = None
+        # for selected_company in selected_company_list:
+        #     qs_stocks_of_interest_delete = qs_stocks_of_interest.exclude(
+        #         company_code=selected_company)
+        # qs_stocks_of_interest_delete.delete()
+        
+        # 현재 사용자의 관심종목(b,c)이었고, 이번에도 선택된 회사(b,c,d)들은 아무 처리도 하지 않음
         # (추가일자는 최초에 관심종목으로 지정한 날짜 기준)
-
         # 이번 선택 리스트에 있지만, 이전에는 없었던 회사들을 관심종목으로 DB에 추가
         # (추가일자는 현재 시점의 일자 사용)
-        print('sdfsdfsf')
-        print(qs_stocks_of_interest)
-        already_selected = {row.company_code
-                            for row in qs_stocks_of_interest}  # set comprehension
+        # already_selected = {row.company_code
+        #                     for row in qs_stocks_of_interest}  # set comprehension
 
-        print('aaa')
-        print(already_selected)
-        for company_code in selected_company_list:
-            if company_code in already_selected:  # 이미 관심종목이면 패스
-                continue
-            # 새로운 관심종목들을 하나씩 DB에 추가
-            var_user_id = User.objects.get(id=2)
-            var_company_code = ListedCompany.objects.get(code=company_code)
-            current_date = datetime.now().strftime('%Y-%m-%d')  # 현재 날짜를 가져와서 적절한 포맷으로 변환
+        # DB에 있는 데이터 불러오기
+        qs_stocks_of_interest = StocksOfInterest.objects.all()
+        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user.id)
 
-            row = StocksOfInterest(
-                user_id=var_user_id, company_code=var_company_code, created=current_date)
-            row.save()
+        # 내 선택 리스트 불러오기 
+        #selected_company_list
+        
+        for entity in qs_stocks_of_interest:
+            print('hello')
+            print(entity.company_code)
+            
+            
+
+            
+            # if company_code == '':
+            #     print('go')
+            #     StocksOfInterest.objects.get(user_id=user.id).delete()
+            #     print('end')
+            #     continue
+            # # if company_code in already_selected:  # 이미 관심종목이면 패스
+            # #     continue
+            # # 새로운 관심종목들을 하나씩 DB에 추가
+            # var_user_id = User.objects.get(id=user.id)
+            # var_company_code = ListedCompany.objects.get(code=company_code)
+            # current_date = datetime.now().strftime('%Y-%m-%d')  # 현재 날짜를 가져와서 적절한 포맷으로 변환
+
+            # row = StocksOfInterest(
+            #     user_id=var_user_id, company_code=var_company_code, created=current_date)
+            # row.save()
 
         return redirect('autostock/dashboard')  # 저장 후에는 dashboard로 이동
