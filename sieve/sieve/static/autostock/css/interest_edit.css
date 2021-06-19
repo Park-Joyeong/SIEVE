@@ -122,7 +122,11 @@ button {
   background: #006efc;
 }
 .active > div > span {
-  color: #FFFFFF;
+  color: #ffffff;
+}
+
+.contents-interest-company span {
+  color: #006EFC;
 }
 
 @media (min-width: 576px) {
