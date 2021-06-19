@@ -34,7 +34,10 @@ def edit_interest(request):
     elif request.method == "POST":
         # 선택한 관심종목들을 리스트로 전달받음
         selected_company_str = request.POST['selected']
-        selected_company_list = selected_company_str.split(',')
+        if selected_company_str == '':
+            selected_company_list = []
+        else:
+            selected_company_list = selected_company_str.split(',')
     
         # 현재 사용자의 관심종목이었지만, 이번에는 선택되지 않은 회사들을 삭제
         qs_stocks_of_interest = StocksOfInterest.objects.all()
@@ -65,6 +68,6 @@ def edit_interest(request):
                 row.save()
                     
 
-            res_data = {}
-            res_data['is_success'] = True
+        res_data = {}
+        res_data['is_success'] = True
         return JsonResponse(res_data)
