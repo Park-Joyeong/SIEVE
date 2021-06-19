@@ -59,10 +59,29 @@ def edit_interest(request):
         # 내 선택 리스트 불러오기 
         #selected_company_list
         
-        for entity in qs_stocks_of_interest:
-            print('hello')
-            print(entity.company_code)
+
+        # 
+        for entity in qs_stocks_of_interest.iterator():
+            for selected_company in selected_company_list:
+                print('entity.user_id')
+                print(entity.user_id)
+                print(type(entity.user_id))
+                print('')
+                # model 
+                print('entity.company_code')
+                print(entity.company_code.code)
+                print(type(entity.company_code))
+                print('')
+                # number
+                print(selected_company)
+                if str(entity.company_code.code) == selected_company:
+                    continue
+                else:
+                    entity.delete()
+
             
+
+
             
 
             
