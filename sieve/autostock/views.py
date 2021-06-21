@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from .models import DailyTradingInfo, ListedCompany, StocksOfInterest
-from account.models import User
 from datetime import datetime
 
 
@@ -11,15 +10,12 @@ def show_dashboard(request):
 
 
 def edit_interest(request):
-    user_id = ''
-    user_email = ''
-    user_name = ''
-
-    if 'user_name' not in request.session:  # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
+    if 'user_id' not in request.session:  # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
         return redirect('/signin')
+
     user_email = request.session['user_email']
     user_name = request.session['user_name']
-    user = User.objects.get(email=user_email)
+    user_id = request.session['user_id']
 
     if request.method == 'GET':
         # qs : Query Set
@@ -27,7 +23,7 @@ def edit_interest(request):
 
         qs_stocks_of_interest = StocksOfInterest.objects.all()
         qs_stocks_of_interest = qs_stocks_of_interest.filter(
-            user_id=user.id)
+            user_id=user_id)
 
         render_data = {
             'listed_company': serializers.serialize("json", qs_listed_company),
@@ -45,7 +41,7 @@ def edit_interest(request):
 
         # 현재 사용자의 관심종목이었지만, 이번에는 선택되지 않은 회사들을 삭제
         qs_stocks_of_interest = StocksOfInterest.objects.all()
-        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user.id)
+        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user_id)
         for selected_company in selected_company_list:
             qs_stocks_of_interest = qs_stocks_of_interest.exclude(
                 company_code=selected_company)
@@ -58,17 +54,17 @@ def edit_interest(request):
 
         # DB에 있는 데이터 불러오기
         qs_stocks_of_interest = StocksOfInterest.objects.all()
-        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user.id)
+        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user_id)
 
         for selected_company in selected_company_list:
 
             # 없는 데이터는 DB에 추가
-            if StocksOfInterest.objects.filter(user_id=user.id, company_code=selected_company).count() == 0:
+            if StocksOfInterest.objects.filter(user_id=user_id, company_code=selected_company).count() == 0:
                 listedCompany = ListedCompany.objects.get(
                     code=selected_company)
                 current_date = datetime.now().strftime('%Y-%m-%d')
                 row = StocksOfInterest(
-                    user_id=user, company_code=listedCompany, created=current_date)
+                    user_id=user_id, company_code=listedCompany, created=current_date)
                 row.save()
 
         res_data = {}
