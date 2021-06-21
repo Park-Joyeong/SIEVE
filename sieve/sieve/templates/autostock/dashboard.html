@@ -1,22 +1,24 @@
-{% extends "../base/root.html" %} {% load static %}
+{% extends "../base/layout.html" %} {% load static %}
 
 <!-- extra head -->
-{% block extrahead %} {% endblock %}
+{% block extrahead %}
+<link rel="stylesheet" href="../../static/autostock/dashboard.css" />
+{% endblock %}
 
 <!-- block contents -->
 {% block contents %}
 
 <!-- 도넛 차트 -->
-{% include "donut_chart.html" %}
+{% include "./donut_chart.html" %}
 
 <!-- 주식 차트 -->
-{% include "candlestick_chart.html" %}
+{% include "./candlestick_chart.html" %}
 
 <!-- 주식 잔고, 실시간 계좌 잔고 -->
-{% include "balance.html" %}
+{% include "./balance.html" %}
 
 <!-- 관심 종목 -->
-{% include "interest.html" %}
+{% include "./interest.html" %}
 
 <!-- endblock contents -->
 {% endblock %}
