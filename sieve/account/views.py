@@ -3,9 +3,6 @@ from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ValidationError
 from .models import User
 
-# Create your views here.
-
-
 def signup(request):
     if request.method == 'POST':
         email = request.POST.get("email")
@@ -18,21 +15,12 @@ def signup(request):
                         name=name, phone_number=phone_number)
         try:
             new_user.full_clean()
+
         except ValidationError as error:
-            error_message = ''
-
-
-            if 'email' in error.message_dict :
-                error_message = error.message_dict['email']
-            elif 'password' in error.message_dict :
-                error_message = error.message_dict['password']
-            elif 'name' in error.message_dict :
-                error_message = error.message_dict['name']
-            else :
-                error_message = error.message_dict['phone_number']
-            
-            res_data[ 'error_message'] = error_message
+            error_message = error.message_dict.values()[0]
+            res_data['error_message'] = error_message
             res_data['is_success'] = False
+
             return JsonResponse(res_data)
 
         new_user.save() 
@@ -42,20 +30,20 @@ def signup(request):
         
     elif request.method == 'GET':
         return render(request, 'account/signup.html')
-        
+           
 def check_mail(request) :
     if request.method == 'GET' :
         new_email = request.GET.get("email")
         
         try :
             user = User.objects.get(email = new_email) 
+
         except User.DoesNotExist :  
             can_use_this_email = True
             return JsonResponse({'can_use_this_email' : can_use_this_email})
 
         can_use_this_email = False
         return JsonResponse({'can_use_this_email': can_use_this_email})
-
 
 def signin(request):
     if request.method == 'POST':
@@ -67,10 +55,15 @@ def signin(request):
         res_data = {}
 
         if  user and (user.password == password) :
+            request.session.set_expiry(0) 
+            # value = 0일 경우, 사용자 브라우저 꺼지면 세션 만료
             request.session['user_name'] = user.name
             request.session['user_email'] = user.email
+            request.session['user_id'] = user.id
+
             res_data['is_success'] = True
-            res_data['url_to_redirect'] = './signup' #추후에 대시보드로 리다이렉트
+            res_data['url_to_redirect'] = 'interest/edit' #TODO dashboard로 리다이렉트
+
             return JsonResponse(res_data)
 
         else :
@@ -79,9 +72,18 @@ def signin(request):
             return JsonResponse(res_data)
        
     elif request.method == "GET":
-        if request.session.get('user_name') :
-            print(request.session)
-            print(request.session.get('user_name'))
-            print(request.session.get('user_email'))
-            return redirect('./interest/edit') # 추후에 대시보드로 리다이렉트
+        if 'user_id' in request.session :
+            return redirect('autostock:edit_interest') # TODO dashboard로 리다이렉트
         return render(request, 'account/signin.html')
+
+#signout for test 120.0.0.1:8000/signout
+def signout(request):
+    try:
+        del request.session['user_id']
+        del request.session['user_email']
+        del request.session['user_name']
+    except:
+        pass
+    return redirect('account:signin')
+    
+
