@@ -1,9 +1,13 @@
+/* reset */
+
 :root {
     font-size: 14px;
+    background: aliceblue;
 }
 
 html {
     font-size: 16px;
+    background: aliceblue;
 }
 
 .font12 {
@@ -29,4 +33,13 @@ input::placeholder {
 
 button:focus {
     outline: none;
+}
+
+
+/* layout */
+
+.row {}
+
+.test {
+    /* background: tomato; */
 }
