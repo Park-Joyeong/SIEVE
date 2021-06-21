@@ -17,7 +17,7 @@ def signup(request):
             new_user.full_clean()
 
         except ValidationError as error:
-            error_message = error.message_dict.values(0)
+            error_message = error.message_dict.values()[0]
             res_data['error_message'] = error_message
             res_data['is_success'] = False
 
