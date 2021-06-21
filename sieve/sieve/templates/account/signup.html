@@ -38,7 +38,7 @@
                             이메일형식이 아닙니다.</span>
                         <div>
                             <input type="email" id="email" class="signup-input" name="email"
-                                placeholder="mail@website.com" onfocusout="emailFocusOut()" required />
+                                placeholder="mail@website.com" onkeyup="$('#email-error').hide();" onfocusout="emailFocusOut()" required />
                         </div>
                     </div>
                     <div class="signup-form-item">

@@ -3,7 +3,7 @@ function isEmailValidated() {
 }
 
 function isNameValidated() {
-  var name = $("#name").val().trim();
+  const name = $("#name").val().trim();
   nameMask();
   if (name.length == 0 || name.length > 20) {
     $("#name-error").show();
@@ -14,8 +14,8 @@ function isNameValidated() {
 }
 
 function isPasswordValidated() {
-  var password = $("#password").val();
-  var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{8,20}$/g;
+  const password = $("#password").val();
+  const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{8,20}$/g;
   if (password.match(regex) !== null) {
     $("#password-error").hide();
     return true;
@@ -53,14 +53,14 @@ function emailFocusOut() {
 } //end of emailFocusOut()
 
 function nameMask() {
-  var name = $("#name")
+  const name = $("#name")
     .val()
     .replace(/[^ㄱ-힣a-zA-Z ]/g, "");
   $("#name").val(name);
 }
 
 function phoneMask() {
-  var num = $("#phone-number").val().replace(/\D/g, "");
+  let num = $("#phone-number").val().replace(/\D/g, "");
   if (num.length >= 4 && num.length < 8) {
     num = num.substring(0, 3) + "-" + num.substring(3);
   } else if (num.length >= 8) {
@@ -98,7 +98,7 @@ function formValid(e) {
 }
 
 function executeSignUp() {
-  let dataForm = new FormData($("#formSignUp").get(0));
+  const dataForm = new FormData($("#formSignUp").get(0));
   fetch("./signup", {
     method: "post",
     body: dataForm,
