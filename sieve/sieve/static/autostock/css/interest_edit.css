@@ -32,13 +32,18 @@ button {
     margin-top: 20px;
 }
 
+.wrapper-title {
+    height: 30px;
+}
+
 .text-menu-title {
     font-family: Verdana;
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 15px;
     color: #006efc;
+    margin: 10px;
 }
 
 .container-listed-company,
@@ -131,19 +136,32 @@ button {
 
 
 @media (min-width: 768px) {
-    /* .wrapper {
-        
-    } */
     .wrapper-title {
         background: #006EFC;
     }
     .wrapper-title>.text-menu-title {
         color: #FFFFFF;
+        padding: 5px 0px 0px 10px;
     }
     .container-listed-company,
     .container-stocks-of-interest {
         display: inline-block;
-        width: 45%;
+        width: 48%;
+        height: 70vh;
+        margin-top: 10px;
+    }
+    .container-listed-company {
+        float: left;
+        margin-left: 10px;
+    }
+    .container-stocks-of-interest {
+        float: right;
+        margin-right: 10px;
+    }
+    .area-content-list {
         height: unset;
+    }
+    button {
+        margin-top: 550px; /*화면이 커지면 위에 div들이 inline-block으로 바뀌면서 마진을 바꿔줘야함*/
     }
 }
