@@ -25,12 +25,13 @@ body,
     width: 360px;
     margin: auto;
     position: relative;
-    /* top: 12vh; */
+    width: 100%;
+    /* text-align: center; */
 }
 
 button {
-    display: block;
-    width: 100%;
+    display: inline-block;
+    width: 80%;
     height: 39px;
     box-sizing: border-box;
     border-radius: 20px;
@@ -52,7 +53,7 @@ button {
 
 .container-listed-company,
 .container-stocks-of-interest {
-    width: 100%;
+    width: 90%;
     height: 35vh;
     border: 1px solid #eeeeee;
     border-radius: 3px;
@@ -137,10 +138,20 @@ button {
     color: #006EFC;
 }
 
-@media (min-width: 576px) {}
 
-@media (min-width: 768px) {}
-
-@media (min-width: 992px) {}
-
-@media (min-width: 1200px) {}
+@media (min-width: 768px) {
+    /* .wrapper {
+        
+    } */
+    .wrapper-title {
+        background: #006EFC;
+    }
+    .wrapper-title>.text-menu-title {
+        color: #FFFFFF;
+    }
+    .container-listed-company,
+    .container-stocks-of-interest {
+        display: inline-block;
+        width: 45%;
+    }
+}
