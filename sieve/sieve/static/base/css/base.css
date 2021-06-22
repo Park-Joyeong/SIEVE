@@ -2,12 +2,14 @@
 
 :root {
     font-size: 14px;
-    background: aliceblue;
 }
 
 html {
     font-size: 16px;
-    background: aliceblue;
+}
+
+body {
+    background: linear-gradient(120deg, white, aliceblue);
 }
 
 .font12 {
@@ -38,8 +40,10 @@ button:focus {
 
 /* layout */
 
-.row {}
-
-.test {
-    /* background: tomato; */
+.contents {
+    width: 100%;
+    margin: auto;
+    border: 1px solid rgba(0, 110, 252, 0.25);
 }
+
+.row {}

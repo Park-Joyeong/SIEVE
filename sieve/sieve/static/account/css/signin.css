@@ -2,7 +2,6 @@
     display: block;
     width: 360px;
     margin: auto;
-    background: aliceblue;
     position: relative;
     /* top: 12vh; */
 }
@@ -10,6 +9,7 @@
 .signin-logo {
     display: block;
     width: 120px;
+    /* height: 120px; */
     margin: auto;
     padding-top: 90px;
     margin-bottom: 40px;
@@ -17,6 +17,8 @@
 
 .logo-circle {
     display: block;
+    width: 120px;
+    height: auto;
 }
 
 .signin-form {
@@ -31,6 +33,10 @@
     width: 80%;
     margin: auto;
     margin-bottom: 30px;
+}
+
+.signin-form-item label {
+    font-weight: bold;
 }
 
 .signin-input {
@@ -70,10 +76,11 @@ button {
     color: #fff;
 }
 
-@media (min-width: 576px) {}
-
-@media (min-width: 768px) {}
-
-@media (min-width: 992px) {}
-
-@media (min-width: 1200px) {}
+@media (min-width: 768px) {
+    .wrapper {
+        width: 480px;
+    }
+    .signin-form {
+        width: 480px;
+    }
+}
