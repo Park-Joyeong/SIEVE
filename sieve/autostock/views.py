@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from .models import DailyTradingInfo, ListedCompany, StocksOfInterest
 from datetime import datetime
+from account.models import User
 
 
 def show_dashboard(request):
@@ -43,6 +44,7 @@ def edit_interest(request):
         # 현재 사용자의 관심종목이었지만, 이번에는 선택되지 않은 회사들을 삭제
         qs_stocks_of_interest = StocksOfInterest.objects.all()
         qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user_id)
+        
         for selected_company in selected_company_list:
             qs_stocks_of_interest = qs_stocks_of_interest.exclude(
                 company_code=selected_company)
@@ -61,11 +63,11 @@ def edit_interest(request):
 
             # 없는 데이터는 DB에 추가
             if StocksOfInterest.objects.filter(user_id=user_id, company_code=selected_company).count() == 0:
-                listedCompany = ListedCompany.objects.get(
-                    code=selected_company)
+                user = User.objects.get(id=user_id)    
+                listedCompany = ListedCompany.objects.get(code=selected_company)
                 current_date = datetime.now().strftime('%Y-%m-%d')
                 row = StocksOfInterest(
-                    user_id=user_id, company_code=listedCompany, created=current_date)
+                    user_id=user, company_code=listedCompany, created=current_date)
                 row.save()
 
         res_data = {}
