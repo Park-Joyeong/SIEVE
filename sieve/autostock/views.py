@@ -3,7 +3,6 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from .models import DailyTradingInfo, ListedCompany, StocksOfInterest
 from datetime import datetime
-from account.models import User
 
 
 def show_dashboard(request):
@@ -17,7 +16,7 @@ def edit_interest(request):
     user_email = request.session['user_email']
     user_name = request.session['user_name']
     user_id = request.session['user_id']
-    user = User.objects.get(id=user_id)
+    
 
     if request.method == 'GET':
         # qs : Query Set
@@ -66,7 +65,7 @@ def edit_interest(request):
                     code=selected_company)
                 current_date = datetime.now().strftime('%Y-%m-%d')
                 row = StocksOfInterest(
-                    user_id=user, company_code=listedCompany, created=current_date)
+                    user_id=user_id, company_code=listedCompany, created=current_date)
                 row.save()
 
         res_data = {}
