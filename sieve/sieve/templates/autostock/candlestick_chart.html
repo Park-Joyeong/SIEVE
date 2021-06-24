@@ -1,20 +1,23 @@
 <!-- extra head -->
 {% block extrahead %}
+<link rel="stylesheet" href="../../static/autostock/candlestick_chart.css" />
 <!-- hightchart library -->
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/data.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 {% endblock %}
 
-<div id="container" style="height: 400px; min-width: 310px"></div>
+<div class="candlestick-chart">
+  <div id="container" style="height: 400px; min-width: 310px"></div>
+</div>
 
 {% block extra_js %}
 <script>
   Highcharts.getJSON(
     "https://demo-live-data.highcharts.com/aapl-ohlc.json",
-    function (data) {
+    (data) => {
       // create the chart
-      Highcharts.stockChart("container", {
+      const chart = Highcharts.stockChart("container", {
         rangeSelector: {
           selected: 1,
         },
@@ -39,7 +42,29 @@
             },
           },
         ],
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 500,
+              },
+              chartOptions: {
+                chart: {
+                  height: 300,
+                },
+                subtitle: {
+                  text: null,
+                },
+                navigator: {
+                  enabled: false,
+                },
+              },
+            },
+          ],
+        },
       });
+
+      chart.setSize(null);
     }
   );
 </script>

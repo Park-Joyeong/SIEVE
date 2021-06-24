@@ -7,18 +7,25 @@
 
 <!-- block contents -->
 {% block contents %}
+<div class="wrapper-border">
+  <div class="wrapper">
+    <div class="d-flex bg-warning">
+      <!-- 도넛 차트 -->
+      <div>{% include "./donut_chart.html" %}</div>
+      <!-- 주식 차트 -->
+      <div>{% include "./candlestick_chart.html" %}</div>
+    </div>
+    <div class="d-flex bg-info">
+      <!-- 주식 잔고, 실시간 계좌 잔고 -->
+      <div>{% include "./balance.html" %}</div>
 
-<!-- 도넛 차트 -->
-{% include "./donut_chart.html" %}
-
-<!-- 주식 차트 -->
-{% include "./candlestick_chart.html" %}
-
-<!-- 주식 잔고, 실시간 계좌 잔고 -->
-{% include "./balance.html" %}
-
-<!-- 관심 종목 -->
-{% include "./interest.html" %}
-
+      <!-- 관심 종목 -->
+      <div>{% include "./interest.html" %}</div>
+    </div>
+  </div>
+</div>
 <!-- endblock contents -->
 {% endblock %}
+
+<!-- js -->
+{% block extra_js %} {% endblock %}
