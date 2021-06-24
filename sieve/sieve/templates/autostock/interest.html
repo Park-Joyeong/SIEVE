@@ -1,0 +1,12 @@
+{% load static %}
+
+<div class="container_interest">
+  <div class="wrapper-title">
+    <h2 class="text-item-title">관심 종목</h2>
+    <button class="btn-interest-edit">관심 종목 편집</button>
+</div>
+</div>
+
+{% block extra_js %}
+  <script src="{% static 'autostock/js/interest.js' %}"></script>
+{% endblock %}
