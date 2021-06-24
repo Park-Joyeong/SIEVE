@@ -1,12 +1,19 @@
 {% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'autostock/css/interest.css' %}" />
+{% endblock %}
 
 <div class="container_interest">
   <div class="wrapper-title">
-    <h2 class="text-item-title">관심 종목</h2>
+    <span class="text-item-title">관심 종목</span>
     <button class="btn-interest-edit">관심 종목 편집</button>
-</div>
-</div>
+  </div> <!-- .wrapper-title -->
+
+  <div>
+
+  </div>
+</div> <!-- .container_interest -->
 
 {% block extra_js %}
-  <script src="{% static 'autostock/js/interest.js' %}"></script>
+<script src="{% static 'autostock/js/interest.js' %}"></script>
 {% endblock %}
