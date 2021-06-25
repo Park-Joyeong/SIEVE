@@ -1,0 +1,14 @@
+<!-- extra head -->
+{% block extrahead %}
+<link rel="stylesheet" href="../../static/autostock/css/donut_chart.css" />
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+<div class="donut-chart">
+  <canvas id="myChart"></canvas>
+</div>
+
+{% block extra_js %}
+<script src="../../static/autostock/js/donut_chart.js"></script>>
+{% endblock %}
