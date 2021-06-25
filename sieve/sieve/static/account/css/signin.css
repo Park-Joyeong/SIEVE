@@ -1,22 +1,33 @@
+.wrapper-border {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    box-shadow: 18px 0 25px -18px rgb(0 0 0 / 12%), -18px 0 25px -18px rgb(0 0 0 / 12%);
+    position: relative;
+    top: 10vh;
+}
+
 .wrapper {
     display: block;
     width: 360px;
     margin: auto;
-    background: aliceblue;
     position: relative;
-    top: 12vh;
+    /* top: 12vh; */
 }
 
 .signin-logo {
     display: block;
     width: 120px;
+    /* height: 120px; */
     margin: auto;
-    padding-top: 90px;
+    padding-top: 20px;
     margin-bottom: 40px;
 }
 
 .logo-circle {
     display: block;
+    width: 120px;
+    height: auto;
 }
 
 .signin-form {
@@ -31,6 +42,10 @@
     width: 80%;
     margin: auto;
     margin-bottom: 30px;
+}
+
+.signin-form-item label {
+    font-weight: bold;
 }
 
 .signin-input {
@@ -54,7 +69,7 @@
     width: 80%;
     margin: auto;
     padding-top: 20px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 
 button {
@@ -70,10 +85,11 @@ button {
     color: #fff;
 }
 
-@media (min-width: 576px) {}
-
-@media (min-width: 768px) {}
-
-@media (min-width: 992px) {}
-
-@media (min-width: 1200px) {}
+@media (min-width: 768px) {
+    .wrapper {
+        width: 480px;
+    }
+    .signin-form {
+        width: 480px;
+    }
+}

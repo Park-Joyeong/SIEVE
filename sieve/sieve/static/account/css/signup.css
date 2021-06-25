@@ -1,84 +1,93 @@
+.wrapper-border {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    box-shadow: 18px 0 25px -18px rgb(0 0 0 / 12%), -18px 0 25px -18px rgb(0 0 0 / 12%);
+    position: relative;
+    top: 10vh;
+}
+
 .wrapper {
-  display: block;
-  width: 360px;
-  margin: auto;
-  background: aliceblue;
-  position: relative;
-  top: 12vh;
+    display: block;
+    width: 360px;
+    margin: auto;
+    position: relative;
+    /* top: 12vh; */
 }
 
 .signup-logo {
-  display: block;
-  width: 200px;
-  margin: auto;
-  padding-top: 90px;
-  margin-bottom: 40px;
+    display: block;
+    width: 200px;
+    margin: auto;
+    padding-top: 20px;
+    margin-bottom: 40px;
 }
 
 .logo-text {
-  display: block;
+    display: block;
 }
 
 .signup-form {
-  display: block;
-  width: 360px;
-  margin: auto;
-  color: #006efc;
+    display: block;
+    width: 360px;
+    margin: auto;
+    color: #006efc;
 }
 
 .signup-form-item {
-  display: block;
-  width: 80%;
-  margin: auto;
-  margin-bottom: 30px;
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.signup-form-item label {
+    font-weight: bold;
 }
 
 .signup-input {
-  width: 100%;
-  height: 39px;
-  margin-top: 5px;
-  padding-left: 20px;
-  border: 1px solid rgba(0, 110, 252, 0.25);
-  box-sizing: border-box;
-  border-radius: 20px;
-  color: #006efc;
+    width: 100%;
+    height: 39px;
+    margin-top: 5px;
+    padding-left: 20px;
+    border: 1px solid rgba(0, 110, 252, 0.25);
+    box-sizing: border-box;
+    border-radius: 20px;
+    color: #006efc;
 }
 
 .signup-error {
-  color: red;
-  font-size: 0.9em;
-  display: none;
+    color: red;
+    font-size: 0.9em;
+    display: none;
 }
 
 .signup-button-box {
-  display: block;
-  width: 80%;
-  margin: auto;
-  padding-top: 20px;
-  padding-bottom: 40px;
+    display: block;
+    width: 80%;
+    margin: auto;
+    padding-top: 5px;
+    padding-bottom: 20px;
 }
 
 button {
-  display: block;
-  width: 100%;
-  height: 39px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  background: #006efc;
-  margin-top: 20px;
-  border: 1px solid #006efc;
-  font-weight: bold;
-  color: #fff;
-}
-
-@media (min-width: 576px) {
+    display: block;
+    width: 100%;
+    height: 39px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: #006efc;
+    margin-top: 5px;
+    border: 1px solid #006efc;
+    font-weight: bold;
+    color: #fff;
 }
 
 @media (min-width: 768px) {
-}
-
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
+    .wrapper {
+        width: 480px;
+    }
+    .signup-form {
+        width: 480px;
+    }
 }

@@ -1,0 +1,18 @@
+.wrapper-border {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 110, 252, 0.25);
+    border-radius: 10px;
+    box-shadow: 0 30px 60px -10px rgb(0 0 0 / 10%), 0 18px 36px -18px rgb(0 0 0 / 12%);
+    position: relative;
+    top: 10vh;
+}
+
+.wrapper {
+    display: block;
+    width: 360px;
+    margin: auto;
+    position: relative;
+    /* top: 12vh; */
+}

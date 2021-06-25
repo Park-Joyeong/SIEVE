@@ -1,142 +1,167 @@
-/* 자식에서 height 속성값으로 %를 쓰려고 */
-html,
-body,
-.container,
-.wrapper {
-  height: 100%;
+
+.wrapper-border {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 110, 252, 0.25);
+    border-radius: 10px;
+    box-shadow: 0 30px 60px -10px rgb(0 0 0 / 10%), 0 18px 36px -18px rgb(0 0 0 / 12%);
+    position: relative;
+    top: 10vh;
 }
 
 .wrapper {
-  display: block;
-  width: 360px;
-  margin: auto;
-  /* background: aliceblue; */
-  position: relative;
-  top: 12vh;
+    display: block;
+    width: 360px;
+    position: relative;
+    width: 100%;
 }
+
 
 button {
-  display: block;
-  width: 100%;
-  height: 39px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  background: #006efc;
-  margin-top: 20px;
-  border: 1px solid #006efc;
-  font-weight: bold;
-  color: #fff;
+    display: block;
+    width: 80%;
+    height: 39px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: #006efc;
+    border: 1px solid #006efc;
+    font-weight: bold;
+    color: #fff;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.wrapper-title {
+    height: 30px;
 }
 
 .text-menu-title {
-  font-family: Verdana;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-
-  color: #006efc;
+    font-family: Verdana;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 15px;
+    color: #006efc;
+    margin: 10px;
 }
 
 .container-listed-company,
 .container-stocks-of-interest {
-  height: 35%;
-  border: 1px solid #eeeeee;
-  border-radius: 3px;
+    width: 90%;
+    height: 35vh;
+    border: 1px solid #eeeeee;
+    border-radius: 3px;
+    margin: auto;
 }
 
 .area-content-list {
-  overflow: auto;
-  height: 80%;
+    overflow: auto;
+    height: 80vh;
 }
 
 .area-list-title {
-  height: 15%;
-  background: rgba(238, 238, 238, 0.75);
-  border-radius: 3px 3px 0px 0px;
-  text-align: center;
+    padding: 3px;
+    width: 100%;
+    background: rgba(238, 238, 238, 0.75);
+    border-radius: 3px 3px 0px 0px;
+    text-align: center;
 }
 
 .text-stocks-list-title {
-  font-family: Verdana;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-
-  vertical-align: middle;
-
-  color: rgba(136, 136, 136, 0.75);
+    font-family: Verdana;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    vertical-align: middle;
+    color: rgba(136, 136, 136, 0.75);
 }
 
 .list-item {
-  border: 1px solid #eeeeee;
-  border-radius: 3px;
-
-  padding: 3px 10px;
+    border: 1px solid #eeeeee;
+    border-radius: 3px;
+    padding: 3px 10px;
 }
 
 .company-name {
-  font-family: Verdana;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-
-  color: #000000;
+    font-family: Verdana;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
 }
 
 .code {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
-
-  float: right;
-  color: #000000;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    float: right;
+    color: #000000;
 }
 
 .updated {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 12px;
-
-  color: #000000;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #000000;
 }
 
 .category {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
-
-  float: right;
-  color: #000000;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    float: right;
+    color: #000000;
 }
 
 .active {
-  background: #006efc;
+    background: #006efc;
 }
-.active > div > span {
-  color: #ffffff;
+
+.active>div>span {
+    color: #ffffff;
 }
 
 .contents-interest-company span {
-  color: #006EFC;
+    color: #006EFC;
 }
 
-@media (min-width: 576px) {
-}
 
 @media (min-width: 768px) {
-}
-
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
+    .wrapper-title {
+        background: #006EFC;
+    }
+    .wrapper-title>.text-menu-title {
+        color: #FFFFFF;
+        padding: 5px 0px 0px 10px;
+    }
+    .container-listed-company,
+    .container-stocks-of-interest {
+        display: inline-block;
+        width: 48%;
+        height: 70vh;
+        margin-top: 10px;
+    }
+    .container-listed-company {
+        float: left;
+        margin-left: 10px;
+    }
+    .container-stocks-of-interest {
+        float: right;
+        margin-right: 10px;
+    }
+    .area-content-list {
+        height: unset;
+    }
+    button {
+        margin-top: 550px; /*화면이 커지면 위에 div들이 inline-block으로 바뀌면서 마진을 바꿔줘야함*/
+    }
 }
