@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="../../static/balance.css" />
+
+<!-- 주식 잔고 Table 입니다. -->
+<table class="balance-table">
+  <div class="wrapper-balance">
+    <col />
+    <colgroup span="4"></colgroup>
+    <colgroup span="4"></colgroup>
+    <thead>
+      <tr>
+        <th colspan="1" scope="colgroup">종목명</th>
+        <th colspan="1" scope="colgroup">현재가</th>
+        <th colspan="1" scope="colgroup">평가금액</th>
+        <th colspan="1" scope="colgroup">평가손익</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="col">주문가능/보유수량</th>
+        <th scope="col">매입단가</th>
+        <th scope="col">매입금액</th>
+        <th scope="col">손익률(%)</th>
+      </tr>
+      {% comment %}TODO: 주식 잔고 td 값 하드 코딩 → 변수로 변경{% endcomment %}
+      <tr>
+        <td rowspan="2" class="d-none"></td>
+        {% comment %} 종목명↓ {% endcomment %}
+        <td>종목 이름1</td>
+        {% comment %} 현재가↓ {% endcomment %}
+        <td>7,540</td>
+        {% comment %} 평가금액↓ {% endcomment %}
+        <td>75,400</td>
+        {% comment %} 평가손익↓ {% endcomment %}
+        <td>300</td>
+      </tr>
+      <tr>
+        {% comment %} 주문가능/보유수량↓ {% endcomment %}
+        <td>10/10</td>
+        {% comment %} 매입단가↓ {% endcomment %}
+        <td>7,510</td>
+        {% comment %} 매입금액↓ {% endcomment %}
+        <td>75,100</td>
+        {% comment %} 손익률↓ {% endcomment %}
+        <td>0.40</td>
+      </tr>
+    </tbody>
+  </div>
+</table>
