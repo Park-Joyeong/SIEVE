@@ -30,7 +30,21 @@ window.onload = (event) => {
         updated:'2020-12-12',
         category:'전자업',
       }
-    },
+    },{
+      fields:{
+        company_code:123456,
+        company_name:'오뚜기',
+        updated:'2020-12-12',
+        category:'전자업',
+      }
+    },{
+      fields:{
+        company_code:123456,
+        company_name:'오뚜기',
+        updated:'2020-12-12',
+        category:'전자업',
+      }
+    }
   ])
 };
 

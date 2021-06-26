@@ -1,97 +1,102 @@
 .container_interest {
-  border-style: dotted;
-  width: 100%;
-  height: 20vh;
+    /* margin-top: 15vh; */
+    width: 100%;
+    height: 100%;
 }
 
 .text-item-title {
-  font-family: Verdana;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-
-  color: #006efc;
-  float: left;
+    font-family: Verdana;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    color: #006efc;
+    float: left;
 }
 
 .btn-interest-edit {
-  background: #006efc;
-  border-radius: 20px;
-  font-family: Verdana;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
+    background: #006efc;
+    border-radius: 20px;
+    font-family: Verdana;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    color: #ffffff;
+    float: right;
+}
 
-  color: #ffffff;
-  float: right;
+.container-stocks-of-interest {
+    height: 100%;
+}
+
+.contents-interest-company {
+    height: 75%;
+    overflow: auto;
 }
 
 .wrapper-title {
-  height: 30px;
+    height: 30px;
 }
 
 .area-list-title {
-  padding: 3px;
-  width: 100%;
-  background: rgba(238, 238, 238, 0.75);
-  border-radius: 3px 3px 0px 0px;
-  text-align: center;
+    padding: 3px;
+    width: 100%;
+    background: rgba(238, 238, 238, 0.75);
+    border-radius: 3px 3px 0px 0px;
+    text-align: center;
 }
 
 .text-stocks-list-title {
-  font-family: Verdana;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  vertical-align: middle;
-  color: rgba(136, 136, 136, 0.75);
+    font-family: Verdana;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    vertical-align: middle;
+    color: rgba(136, 136, 136, 0.75);
 }
 
 .list-item {
-  border: 1px solid #eeeeee;
-  border-radius: 3px;
-  padding: 3px 10px;
+    border: 1px solid #eeeeee;
+    border-radius: 3px;
+    padding: 3px 10px;
 }
 
-
-
 .company-name {
-  font-family: Verdana;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-  color: #006EFC;
+    font-family: Verdana;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    color: #006EFC;
 }
 
 .code {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
-  float: right;
-  color: #006EFC;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    float: right;
+    color: #006EFC;
 }
 
 .updated {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 12px;
-  color: #006EFC;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #006EFC;
 }
 
 .category {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
-  float: right;
-  color: #006EFC;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    float: right;
+    color: #006EFC;
 }
