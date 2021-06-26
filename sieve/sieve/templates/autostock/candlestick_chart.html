@@ -1,6 +1,6 @@
 <!-- extra head -->
 {% block extrahead %}
-<link rel="stylesheet" href="../../static/autostock/candlestick_chart.css" />
+<link rel="stylesheet" href="../../static/autostock/css/candlestick_chart.css" />
 <!-- hightchart library -->
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/data.js"></script>
@@ -8,64 +8,60 @@
 {% endblock %}
 
 <div class="candlestick-chart">
-  <div id="container" style="height: 400px; min-width: 310px"></div>
+    <div id="container" style="height: 400px; min-width: 310px"></div>
 </div>
 
 {% block extra_js %}
 <script>
-  Highcharts.getJSON(
-    "https://demo-live-data.highcharts.com/aapl-ohlc.json",
-    (data) => {
-      // create the chart
-      const chart = Highcharts.stockChart("container", {
-        rangeSelector: {
-          selected: 1,
-        },
-
-        title: {
-          text: "AAPL Stock Price",
-        },
-
-        series: [
-          {
-            type: "candlestick",
-            name: "AAPL Stock Price",
-            data: data,
-            dataGrouping: {
-              units: [
-                [
-                  "week", // unit name
-                  [1], // allowed multiples
-                ],
-                ["month", [1, 2, 3, 4, 6]],
-              ],
-            },
-          },
-        ],
-        responsive: {
-          rules: [
-            {
-              condition: {
-                maxWidth: 500,
-              },
-              chartOptions: {
-                chart: {
-                  height: 300,
+    Highcharts.getJSON(
+        "https://demo-live-data.highcharts.com/aapl-ohlc.json",
+        (data) => {
+            // create the chart
+            const chart = Highcharts.stockChart("container", {
+                rangeSelector: {
+                    selected: 1,
                 },
-                subtitle: {
-                  text: null,
-                },
-                navigator: {
-                  enabled: false,
-                },
-              },
-            },
-          ],
-        },
-      });
 
-      chart.setSize(null);
-    }
-  );
+                title: {
+                    text: "AAPL Stock Price",
+                },
+
+                series: [{
+                    type: "candlestick",
+                    name: "AAPL Stock Price",
+                    data: data,
+                    dataGrouping: {
+                        units: [
+                            [
+                                "week", // unit name
+                                [1], // allowed multiples
+                            ],
+                            ["month", [1, 2, 3, 4, 6]],
+                        ],
+                    },
+                }, ],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500,
+                        },
+                        chartOptions: {
+                            chart: {
+                                height: 300,
+                            },
+                            subtitle: {
+                                text: null,
+                            },
+                            navigator: {
+                                enabled: false,
+                            },
+                        },
+                    }, ],
+                },
+            });
+
+            chart.setSize(null);
+        }
+    );
 </script>
 {% endblock %}

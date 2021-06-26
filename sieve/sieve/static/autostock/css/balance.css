@@ -1,4 +1,13 @@
 .balance-table {
-    width: 50vw;
+    width: 100%;
     background: white;
+    border-collapse: collapse;
+    border: 1px solid rgba(238, 238, 238, 0.75);
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.balance-thead {
+    background: rgba(238, 238, 238, 0.75);
+    border-radius: 3px 3px 0px 0px;
 }
