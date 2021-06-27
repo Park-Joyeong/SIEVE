@@ -20,7 +20,7 @@
     font-family: Verdana;
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 15px;
     color: #ffffff;
     float: right;
@@ -36,7 +36,7 @@
 }
 
 .wrapper-title {
-    height: 30px;
+    height: 21px;
 }
 
 .area-list-title {
