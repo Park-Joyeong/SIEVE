@@ -11,12 +11,19 @@ class DailyTradingInfo(models.Model):
     diff = models.BigIntegerField(blank=True, null=True)
     volume = models.BigIntegerField(blank=True, null=True)
 
+    class Meta:
+        managed = False
+        db_table = 'DailyTradingInfo'
 
 class ListedCompany(models.Model):
     code = models.CharField(primary_key=True, max_length=20)
     company_name = models.CharField(max_length=40, blank=True, null=True)
     updated = models.DateField(blank=True, null=True)
     category = models.CharField(max_length=60, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ListedCompany'
 
 
 class StocksOfInterest(models.Model):
