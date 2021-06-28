@@ -34,3 +34,4 @@ class StocksOfInterest(models.Model):
 
 
 # Create your models here.
+# branch 만듦
