@@ -31,8 +31,6 @@ class StocksOfInterest(models.Model):
     company_code = models.ForeignKey('ListedCompany', models.CASCADE, db_column='company_code', blank=True, null=True)
     created = models.DateField(blank=True, null=True)
 
-
-
 # Create your models here.
 # branch 만듦
 # 주식잔고, 실시간 계좌 잔고 테이블 생성
@@ -48,8 +46,8 @@ class StockBalance(models.Model):
 
 class RealtimeAccountBalance(models.Model):
     # id당 계좌 번호 1개
+    account_number = models.CharField(primary_key=True, max_length=30, verbose_name='계좌번호')
     user_id = models.ForeignKey('account.User', on_delete=models.CASCADE, db_column='user_id', verbose_name='유저아이디')
-    account_number = models.CharField(max_length=30, verbose_name='계좌번호')
     total_evaluation_amount = models.BigIntegerField(verbose_name='총평가금액')
     total_valuation_profit_or_loss = models.BigIntegerField(verbose_name='총평가손익')
     rate_of_return = models.BigIntegerField(verbose_name='총손익률')
