@@ -9,6 +9,29 @@ from account.models import User
 def show_dashboard(request):
     return render(request, "autostock/dashboard.html")
 
+def json_interest(request):
+    if 'user_id' not in request.session:  # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
+        return JsonResponse({"err" : "Not Logged in"}) # 오류  메시지 반환
+
+    user_email = request.session['user_email']
+    user_name = request.session['user_name']
+    user_id = request.session['user_id']
+
+    if request.method == 'GET':
+        # qs : Query Set
+    
+        qs_stocks_of_interest = StocksOfInterest.objects.select_related("company_code").all()
+        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user_id)
+        res = []
+        for a in qs_stocks_of_interest:
+            res.append({
+                "company_code" : a.company_code.code,
+                "company_name" : a.company_code.company_name,
+                "category" : a.company_code.category,
+                "created" : a.created
+            })
+        return JsonResponse({"data" : res}, json_dumps_params={"ensure_ascii":False})
+
 
 def edit_interest(request):
     if 'user_id' not in request.session:  # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
