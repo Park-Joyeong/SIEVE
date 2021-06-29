@@ -10,14 +10,19 @@
     fetch("../../dashboard/getTradingInfo?" + "companyCode=" + $("#companyCode").val())
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
-        console.log(data)
-
+        var tradingInfo = JSON.parse(data.tradingInfo)
+        console.log(tradingInfo)
         if (data["tradingInfo"]) {
-          var arr = data["tradingInfo"];
+          var arr = tradingInfo
           $('#result').html('result:<br/>');
           for(var i=0; i<arr.length; i++) {
-            $('#result').append('<p>' + arr[i] + '</p>');
+            var fieldsObj = arr[i]['fields'];
+
+            $('#result').append('<p>');
+            for(var key in fieldsObj) {
+              $('#result').append(key+ ':' + fieldsObj[key]+', ');
+            }
+            $('#result').append('</p>');
           }
           
         } else {
