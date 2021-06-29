@@ -50,33 +50,39 @@ def signin(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         
-        user = User.objects.filter(email=email)[0]
-        
-        res_data = {}
+        try :
+            user = User.objects.get(email = email) 
+            res_data = {}
 
-        if  user and (user.password == password) :
-            request.session.set_expiry(0) 
-            # value = 0일 경우, 사용자 브라우저 꺼지면 세션 만료
-            request.session['user_name'] = user.name
-            request.session['user_email'] = user.email
-            request.session['user_id'] = user.id
+            if user.password == password :
 
-            res_data['is_success'] = True
-            res_data['url_to_redirect'] = 'interest/edit' #TODO dashboard로 리다이렉트
+                request.session.set_expiry(0) # value = 0일 경우, 사용자 브라우저 꺼지면 세션 만료
+                request.session['user_name'] = user.name
+                request.session['user_email'] = user.email
+                request.session['user_id'] = user.id
+                request.session.save()
 
-            return JsonResponse(res_data)
+                res_data['is_success'] = True
+                res_data['url_to_redirect'] = 'interest/edit' #TODO dashboard로 리다이렉트
+                return JsonResponse(res_data)
 
-        else :
+            else :
+                res_data['is_success'] = False
+                res_data['error_message'] = '비밀번호를 다시 확인하세요'
+                return JsonResponse(res_data)
+
+        except User.DoesNotExist :
+            res_data = {}  
             res_data['is_success'] = False
-            res_data['error_message'] = '이메일과 비밀번호를 다시 확인하세요'
+            res_data['error_message'] = '없는 회원입니다.'
             return JsonResponse(res_data)
-       
+        
     elif request.method == "GET":
         if 'user_id' in request.session :
             return redirect('autostock:edit_interest') # TODO dashboard로 리다이렉트
         return render(request, 'account/signin.html')
 
-#signout for test 120.0.0.1:8000/signout
+#signout for test 127.0.0.1:8000/signout
 def signout(request):
     try:
         del request.session['user_id']
