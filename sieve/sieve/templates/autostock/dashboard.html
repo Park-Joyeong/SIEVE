@@ -3,6 +3,30 @@
 <!-- extra head -->
 {% block extrahead %}
 <link rel="stylesheet" href="../../static/autostock/dashboard.css" />
+<!--테스트 시작-->
+<script>
+  function getTradingInfo() {
+
+    fetch("../../dashboard/getTradingInfo?" + "companyCode=" + $("#companyCode").val())
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        console.log(data)
+
+        if (data["tradingInfo"]) {
+          var arr = data["tradingInfo"];
+          $('#result').html('result:<br/>');
+          for(var i=0; i<arr.length; i++) {
+            $('#result').append('<p>' + arr[i] + '</p>');
+          }
+          
+        } else {
+          $('#result').html('조회 된 결과가 없습니다.')
+        }
+      });
+  } //end of emailFocusOut()
+</script>
+<!--테스트 종료-->
 {% endblock %}
 
 <!-- block contents -->
@@ -22,6 +46,30 @@
       <!-- 관심 종목 -->
       <div>{% include "./interest.html" %}</div>
     </div>
+
+
+
+    <!-- 테스트 시작-->
+    <div style="border-style: dotted;">
+      /dashboard/getTradingInfo에 GET 방식으로 파라미터 companyCode를 넣었습니다..<br />
+      ex) localhost:8000/dashboard/getTradingInfo?companyCode=000020<br />
+      종목코드: <input id="companyCode" type="text" maxlength="6" size="10"><button onclick="getTradingInfo()">전송</button><br />
+      ex) 005930(삼성전자), 068270(셀트리온), 000020(동화약품)<br />
+      <hr />
+      <div id="result">
+        result:
+      </div>
+
+    </div>
+
+
+    <!-- 테스트 끝-->
+
+
+
+
+
+
   </div>
 </div>
 <!-- endblock contents -->
