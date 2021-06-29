@@ -73,3 +73,13 @@ def edit_interest(request):
         res_data = {}
         res_data['is_success'] = True
         return JsonResponse(res_data)
+
+def selected_stock(request):
+
+    if request.method == 'GET':
+        company_code = request.GET['companyCode']
+
+        daily_trading_info = DailyTradingInfo.objects.all()
+        tradingInfo = daily_trading_info.filter(company_code == company_code)
+        
+        return render(request, 'autostock/dashboard.html', {'tradingInfo' : tradingInfo})
