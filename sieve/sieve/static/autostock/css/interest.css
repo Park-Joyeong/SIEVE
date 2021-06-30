@@ -100,3 +100,7 @@
     float: right;
     color: #006EFC;
 }
+
+.btn-interest-edit {
+    cursor: pointer;
+}
