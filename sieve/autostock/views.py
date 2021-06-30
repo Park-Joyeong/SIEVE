@@ -19,16 +19,17 @@ def json_interest(request):
 
     if request.method == 'GET':
         # qs : Query Set
-    
+        qs_listed_company = ListedCompany.objects.all()
+
         qs_stocks_of_interest = StocksOfInterest.objects.select_related("company_code").all()
         qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user_id)
         res = []
-        for a in qs_stocks_of_interest:
+        for stocks_of_interest in qs_stocks_of_interest:
             res.append({
-                "company_code" : a.company_code.code,
-                "company_name" : a.company_code.company_name,
-                "category" : a.company_code.category,
-                "created" : a.created
+                "company_code" : stocks_of_interest.company_code.code,
+                "company_name" : stocks_of_interest.company_code.company_name,
+                "category" : stocks_of_interest.company_code.category,
+                "created" : stocks_of_interest.created
             })
         return JsonResponse({"data" : res}, json_dumps_params={"ensure_ascii":False})
 
