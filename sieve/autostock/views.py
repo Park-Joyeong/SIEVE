@@ -1,13 +1,52 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from .models import DailyTradingInfo, ListedCompany, StocksOfInterest
+from .models import DailyTradingInfo, ListedCompany, StocksOfInterest, StockBalance, RealtimeAccountBalance
 from datetime import datetime
+from . import stock_seralizers
 from account.models import User
 
 
 def show_dashboard(request):
-    return render(request, "autostock/dashboard.html")
+    if 'user_id' not in request.session :
+        return redirect('account:signin')
+
+    if request.method == 'GET' :
+        user_id = request.session['user_id']
+        user = User.objects.get(id = user_id)
+        qs_stock_balance = StockBalance.objects.filter(user_id = user)
+        qs_account_balance = RealtimeAccountBalance.objects.get(user_id = user)
+
+        
+        res = {
+            "stock_balance" : stock_seralizers.get_stock_balance(qs_stock_balance),
+            "account_balance" : stock_seralizers.get_account_balance(qs_account_balance),
+        }
+        
+        return render(request, "autostock/dashboard.html", res)
+
+def json_interest(request):
+    if 'user_id' not in request.session:  # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
+        return JsonResponse({"err" : "Not Logged in"}) # 오류  메시지 반환
+
+    user_email = request.session['user_email']
+    user_name = request.session['user_name']
+    user_id = request.session['user_id']
+
+    if request.method == 'GET':
+        # qs : Query Set
+    
+        qs_stocks_of_interest = StocksOfInterest.objects.select_related("company_code").all()
+        qs_stocks_of_interest = qs_stocks_of_interest.filter(user_id=user_id)
+        res = []
+        for a in qs_stocks_of_interest:
+            res.append({
+                "company_code" : a.company_code.code,
+                "company_name" : a.company_code.company_name,
+                "category" : a.company_code.category,
+                "created" : a.created
+            })
+        return JsonResponse({"data" : res}, json_dumps_params={"ensure_ascii":False})
 
 
 def edit_interest(request):
@@ -75,7 +114,6 @@ def edit_interest(request):
         return JsonResponse(res_data)
 
 def selected_stock(request):
-
     if request.method == 'GET':
         company_code = request.GET['companyCode']
 
@@ -83,3 +121,4 @@ def selected_stock(request):
         tradingInfo = daily_trading_info.filter(company_code = company_code)
 
         return JsonResponse({'tradingInfo':serializers.serialize("json",tradingInfo)})
+
