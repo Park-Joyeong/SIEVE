@@ -17,7 +17,6 @@ def show_dashboard(request):
         qs_stock_balance = StockBalance.objects.filter(user_id = user)
         qs_account_balance = RealtimeAccountBalance.objects.get(user_id = user)
 
-        
         res = {
             "stock_balance" : stock_seralizers.get_stock_balance(qs_stock_balance),
             "account_balance" : stock_seralizers.get_account_balance(qs_account_balance),
