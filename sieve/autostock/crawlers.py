@@ -3,7 +3,6 @@ import requests
 
 def get_current_price (code) :
     url = "http://finance.naver.com/item/sise.nhn?code={}".format(code)
-    print(url)
     html = BeautifulSoup(requests.get(url,
                 headers={'User-agent': 'Mozilla/5.0'}).text, "lxml")
     current_price_text = html.find('strong', id="_nowVal").text

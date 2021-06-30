@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from .models import DailyTradingInfo, ListedCompany, StocksOfInterest, StockBalance, RealtimeAccountBalance
+from .models import *
 from datetime import datetime
-from . import stock_seralizers
+from . import autostock_serializers
 from account.models import User
 
 
@@ -18,8 +18,8 @@ def show_dashboard(request):
         qs_account_balance = RealtimeAccountBalance.objects.get(user_id = user)
 
         res = {
-            "stock_balance" : stock_seralizers.get_stock_balance(qs_stock_balance),
-            "account_balance" : stock_seralizers.get_account_balance(qs_account_balance),
+            "stock_balance" : autostock_serializers.get_stock_balance(qs_stock_balance),
+            "account_balance" : autostock_serializers.get_account_balance(qs_account_balance),
         }
         
         return render(request, "autostock/dashboard.html", res)
