@@ -26,7 +26,7 @@ def get_stock_balance (request) :
             'stock_balance' :  autostock_serializers.get_stock_balance(qs_stock_balance),
         }
 
-        return JsonResponse(res)
+        return JsonResponse(res, json_dumps_params={"ensure_ascii":False})
 
 def get_account_balance (request) :
     if 'user_id' not in request.session :
@@ -41,7 +41,7 @@ def get_account_balance (request) :
             'account_balance' :  autostock_serializers.get_account_balance(qs_account_balance),
         }
 
-        return JsonResponse(res)
+        return JsonResponse(res, json_dumps_params={"ensure_ascii":False})
 
 def json_interest(request):
     if 'user_id' not in request.session:  # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
