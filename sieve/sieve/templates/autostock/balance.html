@@ -17,7 +17,7 @@
         <th colspan="1" scope="colgroup">평가손익</th>
       </tr>
       <tr>
-        <th scope="col">주문가능/보유수량</th>
+        <th scope="col">보유수량</th>
         <th scope="col">매입단가</th>
         <th scope="col">매입금액</th>
         <th scope="col">손익률(%)</th>
@@ -25,28 +25,25 @@
     </thead>
 
     <tbody class="balance-tbody">
-      {% comment %}TODO: 주식 잔고 td 값 하드 코딩 → 변수로 변경{% endcomment %}
-      <tr>
+      {% comment %} showStockBalance
+      <tr class="stock-balance">
         <td rowspan="2" class="d-none"></td>
-        {% comment %} 종목명↓ {% endcomment %}
-        <td>종목 이름1</td>
-        {% comment %} 현재가↓ {% endcomment %}
-        <td>7,540</td>
-        {% comment %} 평가금액↓ {% endcomment %}
-        <td>75,400</td>
-        {% comment %} 평가손익↓ {% endcomment %}
-        <td>300</td>
+        <td id="company-name">종목 이름1</td>
+        <td id="current-price">7,540</td>
+        <td id="evaluation-amount">75,400</td>
+        <td id="valuation-profit-or-loss">300</td>
       </tr>
-      <tr>
-        {% comment %} 주문가능/보유수량↓ {% endcomment %}
-        <td>10/10</td>
-        {% comment %} 매입단가↓ {% endcomment %}
-        <td>7,510</td>
-        {% comment %} 매입금액↓ {% endcomment %}
-        <td>75,100</td>
-        {% comment %} 손익률↓ {% endcomment %}
-        <td>0.40</td>
+      <tr class="stock-balance">
+        <td id="holding-quantity">10/10</td>
+        <td id="purchase-unit-price">7,510</td>
+        <td id="purchase-amount">75,100</td>
+        <td id="profit-or-loss-rate">0.40</td>
       </tr>
+      {% endcomment %}
     </tbody>
   </table>
 </div>
+
+{% block extra_js %}
+<script src="../../static/autostock/js/balance.js"></script>
+{% endblock %}
