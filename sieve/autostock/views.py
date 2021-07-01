@@ -6,23 +6,42 @@ from datetime import datetime
 from . import autostock_serializers
 from account.models import User
 
+def show_dashboard (request) :
+    if 'user_id' not in request.session :
+        return redirect('account:signin')
 
-def show_dashboard(request):
+    if request.method == 'GET' :
+        return render(request, "autostock/dashboard.html")
+
+def get_stock_balance (request) :
+    if 'user_id' not in request.session :
+        return redirect('account:signin')
+    
+    if request.method == 'GET' :
+        user_id = request.session['user_id']
+        user = User.objects.get(id = user_id)
+        qs_stock_balance = StockBalance.objects.filter(user_id = user)
+        
+        res = {
+            'stock_balance' :  autostock_serializers.get_stock_balance(qs_stock_balance),
+        }
+
+        return JsonResponse(res)
+
+def get_account_balance (request) :
     if 'user_id' not in request.session :
         return redirect('account:signin')
 
     if request.method == 'GET' :
         user_id = request.session['user_id']
         user = User.objects.get(id = user_id)
-        qs_stock_balance = StockBalance.objects.filter(user_id = user)
         qs_account_balance = RealtimeAccountBalance.objects.get(user_id = user)
-
-        res = {
-            "stock_balance" : autostock_serializers.get_stock_balance(qs_stock_balance),
-            "account_balance" : autostock_serializers.get_account_balance(qs_account_balance),
-        }
         
-        return render(request, "autostock/dashboard.html", res)
+        res = {
+            'account_balance' :  autostock_serializers.get_account_balance(qs_account_balance),
+        }
+
+        return JsonResponse(res)
 
 def json_interest(request):
     if 'user_id' not in request.session:  # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
