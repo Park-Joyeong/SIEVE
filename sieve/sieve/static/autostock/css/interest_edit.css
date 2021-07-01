@@ -57,7 +57,7 @@ button {
 
 .area-content-list {
     overflow: auto;
-    height: 80vh;
+    height: 90%;
 }
 
 .area-list-title {
@@ -66,6 +66,7 @@ button {
     background: rgba(238, 238, 238, 0.75);
     border-radius: 3px 3px 0px 0px;
     text-align: center;
+    height:10%;
 }
 
 .text-stocks-list-title {
@@ -158,10 +159,14 @@ button {
         float: right;
         margin-right: 10px;
     }
-    .area-content-list {
-        height: unset;
-    }
     button {
         margin-top: 550px; /*화면이 커지면 위에 div들이 inline-block으로 바뀌면서 마진을 바꿔줘야함*/
+    }
+    .area-list-title {
+        height:5%;
+    }
+    .area-content-list {
+        overflow: auto;
+        height: 95%;
     }
 }
