@@ -79,7 +79,7 @@ def signin(request):
         
     elif request.method == "GET":
         if 'user_id' in request.session :
-            return redirect('autostock:edit_interest') # TODO dashboard로 리다이렉트
+            return redirect('autostock:show_dashboard') # TODO dashboard로 리다이렉트
         return render(request, 'account/signin.html')
 
 #signout for test 127.0.0.1:8000/signout
