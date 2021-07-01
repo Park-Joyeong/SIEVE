@@ -14,12 +14,13 @@
     font-size: 12px;
 }
 
-.balance-thead {
+.balance-thead th {
     text-align: center;
     background: rgba(238, 238, 238, 0.75);
     border-radius: 3px 3px 0px 0px;
 }
 
 .balance-tbody td {
-    padding-left: 7px;
+    text-align: right;
+    padding-right: 7px;
 }
