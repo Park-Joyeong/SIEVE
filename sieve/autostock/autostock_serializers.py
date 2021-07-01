@@ -12,7 +12,7 @@ def get_stock_balance (qs_stock_balance):
         res_stock_balance.append({
             "company_name" : stock_balance.company_code.company_name,
             "company_code" : stock_balance.company_code.code,
-            "current_pice" : current_price,
+            "current_price" : current_price,
             "evaluation_amount" : evaluation_amount,
             "valuation_profit_or_loss" : valuation_profit_or_loss,
             "holding_quantity" : stock_balance.holding_quantity,

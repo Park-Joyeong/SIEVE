@@ -63,7 +63,7 @@ def signin(request):
                 request.session.save()
 
                 res_data['is_success'] = True
-                res_data['url_to_redirect'] = 'interest/edit' #TODO dashboard로 리다이렉트
+                res_data['url_to_redirect'] = 'dashboard/show'
                 return JsonResponse(res_data)
 
             else :
@@ -79,7 +79,7 @@ def signin(request):
         
     elif request.method == "GET":
         if 'user_id' in request.session :
-            return redirect('autostock:show_dashboard') # TODO dashboard로 리다이렉트
+            return redirect('autostock:show_dashboard') 
         return render(request, 'account/signin.html')
 
 #signout for test 127.0.0.1:8000/signout
