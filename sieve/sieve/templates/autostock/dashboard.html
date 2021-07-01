@@ -2,79 +2,26 @@
 
 <!-- extra head -->
 {% block extrahead %}
-<link rel="stylesheet" href="../../static/autostock/dashboard.css" />
-<!--테스트 시작-->
-<script>
-  function getTradingInfo() {
-
-    fetch("../../dashboard/getTradingInfo?" + "companyCode=" + $("#companyCode").val())
-      .then((response) => response.json())
-      .then((data) => {
-        var tradingInfo = JSON.parse(data.tradingInfo)
-        console.log(tradingInfo)
-        if (data["tradingInfo"]) {
-          var arr = tradingInfo
-          $('#result').html('result:<br/>');
-          for(var i=0; i<arr.length; i++) {
-            var fieldsObj = arr[i]['fields'];
-
-            $('#result').append('<p>');
-            for(var key in fieldsObj) {
-              $('#result').append(key+ ':' + fieldsObj[key]+', ');
-            }
-            $('#result').append('</p>');
-          }
-          
-        } else {
-          $('#result').html('조회 된 결과가 없습니다.')
-        }
-      });
-  } //end of emailFocusOut()
-</script>
-<!--테스트 종료-->
+<link rel="stylesheet" href="../../static/autostock/css/dashboard.css" />
 {% endblock %}
 
 <!-- block contents -->
 {% block contents %}
 <div class="wrapper-border">
   <div class="wrapper">
-    <div class="d-flex bg-warning">
+    <div class="flex-container">
       <!-- 도넛 차트 -->
-      <div>{% include "./donut_chart.html" %}</div>
+      <div class="flex-item">{% include "./donut_chart.html" %}</div>
       <!-- 주식 차트 -->
-      <div>{% include "./candlestick_chart.html" %}</div>
+      <div class="flex-item">{% include "./candlestick_chart.html" %}</div>
     </div>
-    <div class="d-flex bg-info">
+    <div class="flex-container">
       <!-- 주식 잔고, 실시간 계좌 잔고 -->
-      <div>{% include "./balance.html" %}</div>
+      <div class="flex-item">{% include "./balance.html" %}</div>
 
       <!-- 관심 종목 -->
-      <div>{% include "./interest.html" %}</div>
+      <div class="flex-item">{% include "./interest.html" %}</div>
     </div>
-
-
-
-    <!-- 테스트 시작-->
-    <div style="border-style: dotted;">
-      /dashboard/getTradingInfo에 GET 방식으로 파라미터 companyCode를 넣었습니다..<br />
-      ex) localhost:8000/dashboard/getTradingInfo?companyCode=000020<br />
-      종목코드: <input id="companyCode" type="text" maxlength="6" size="10"><button onclick="getTradingInfo()">전송</button><button onclick="$('#result').html('result:');">초기화</button><br />
-      ex) 005930(삼성전자), 068270(셀트리온), 000020(동화약품)<br />
-      <hr />
-      <div id="result">
-        result:
-      </div>
-
-    </div>
-
-
-    <!-- 테스트 끝-->
-
-
-
-
-
-
   </div>
 </div>
 <!-- endblock contents -->
