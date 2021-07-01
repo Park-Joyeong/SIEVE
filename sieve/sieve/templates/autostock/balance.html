@@ -1,26 +1,30 @@
-<link rel="stylesheet" href="../../static/balance.css" />
+{% block extrahead %}
+<link rel="stylesheet" href="../../static/autostock/css/balance.css" />
+{% endblock %}
 
 <!-- 주식 잔고 Table 입니다. -->
-<table class="balance-table">
-  <div class="wrapper-balance">
+<div class="wrapper-balance">
+  <h2 class="balance-title">주식 잔고</h2>
+  <table class="balance-table">
     <col />
     <colgroup span="4"></colgroup>
     <colgroup span="4"></colgroup>
-    <thead>
+    <thead class="balance-thead">
       <tr>
         <th colspan="1" scope="colgroup">종목명</th>
         <th colspan="1" scope="colgroup">현재가</th>
         <th colspan="1" scope="colgroup">평가금액</th>
         <th colspan="1" scope="colgroup">평가손익</th>
       </tr>
-    </thead>
-    <tbody>
       <tr>
         <th scope="col">주문가능/보유수량</th>
         <th scope="col">매입단가</th>
         <th scope="col">매입금액</th>
         <th scope="col">손익률(%)</th>
       </tr>
+    </thead>
+
+    <tbody class="balance-tbody">
       {% comment %}TODO: 주식 잔고 td 값 하드 코딩 → 변수로 변경{% endcomment %}
       <tr>
         <td rowspan="2" class="d-none"></td>
@@ -44,5 +48,5 @@
         <td>0.40</td>
       </tr>
     </tbody>
-  </div>
-</table>
+  </table>
+</div>

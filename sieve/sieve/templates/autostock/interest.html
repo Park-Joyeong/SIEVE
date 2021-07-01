@@ -5,13 +5,28 @@
 <div class="container_interest">
   <div class="wrapper-title">
     <span class="text-item-title">관심 종목</span>
-    <button class="btn-interest-edit">관심 종목 편집</button>
+    <span class="btn-interest-edit" onclick="goToEditPage()">관심 종목 편집</span>
   </div> <!-- .wrapper-title -->
 
-  <div>
-
+  <div class="container-stocks-of-interest">
+    <div class="area-list-title">
+      <span class="text-stocks-list-title">관심 종목</span>
+    </div>
+    <div id="contents-interest-company" class="contents-interest-company area-content-list">
+    </div>
   </div>
 </div> <!-- .container_interest -->
+
+<div class="item-interest-list">
+  <div>
+      <span class="company-name"></span>
+      <span class="code"></span>
+  </div>
+  <div>
+      <span class="updated"></span>
+      <span class="category"></span>
+  </div>
+</div>
 
 {% block extra_js %}
 <script src="../../static/autostock/js/interest.js"></script>
