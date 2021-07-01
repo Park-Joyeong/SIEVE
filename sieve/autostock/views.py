@@ -66,7 +66,6 @@ def json_interest(request):
             })
         return JsonResponse({"data" : res}, json_dumps_params={"ensure_ascii":False})
 
-
 def edit_interest(request):
     if 'user_id' not in request.session:  # user_id가 세션에 없으면(=로그인되지 않은 사용자면)
         return redirect('/signin')
