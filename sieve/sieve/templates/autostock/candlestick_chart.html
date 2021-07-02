@@ -12,56 +12,5 @@
 </div>
 
 {% block extra_js %}
-<script>
-    Highcharts.getJSON(
-        "https://demo-live-data.highcharts.com/aapl-ohlc.json",
-        (data) => {
-            // create the chart
-            const chart = Highcharts.stockChart("container", {
-                rangeSelector: {
-                    selected: 1,
-                },
-
-                title: {
-                    text: "AAPL Stock Price",
-                },
-
-                series: [{
-                    type: "candlestick",
-                    name: "AAPL Stock Price",
-                    data: data,
-                    dataGrouping: {
-                        units: [
-                            [
-                                "week", // unit name
-                                [1], // allowed multiples
-                            ],
-                            ["month", [1, 2, 3, 4, 6]],
-                        ],
-                    },
-                }, ],
-                responsive: {
-                    rules: [{
-                        condition: {
-                            maxWidth: 500,
-                        },
-                        chartOptions: {
-                            chart: {
-                                height: 205,
-                            },
-                            subtitle: {
-                                text: null,
-                            },
-                            navigator: {
-                                enabled: false,
-                            },
-                        },
-                    }, ],
-                },
-            });
-
-            chart.setSize(null);
-        }
-    );
-</script>
+<script src="../../static/autostock/js/candlestick_chart.js"></script>
 {% endblock %}
