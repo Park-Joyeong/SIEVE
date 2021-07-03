@@ -6,18 +6,19 @@ def get_stock_balance (qs_stock_balance):
         current_price = crawlers.get_current_price(stock_balance.company_code.code)
         evaluation_amount = stock_balance.holding_quantity * current_price
         purchase_amount = stock_balance.purchase_unit_price * stock_balance.holding_quantity
-        profit_or_loss_rate = (current_price - stock_balance.purchase_unit_price ) / stock_balance.purchase_unit_price
+        profit_or_loss_rate = (current_price / stock_balance.purchase_unit_price - 1) * 100
         valuation_profit_or_loss = evaluation_amount - purchase_amount 
 
         res_stock_balance.append({
             "company_name" : stock_balance.company_code.company_name,
             "company_code" : stock_balance.company_code.code,
-            "current_price" : current_price,
-            "evaluation_amount" : evaluation_amount,
-            "valuation_profit_or_loss" : valuation_profit_or_loss,
-            "holding_quantity" : stock_balance.holding_quantity,
-            "purchase_unit_price" : stock_balance.purchase_unit_price,
-            "purchase_amount" : purchase_amount,
+            "current_price" : format(current_price, ','),
+            "evaluation_amount" : format(evaluation_amount, ','),
+            "valuation_profit_or_loss" : format(valuation_profit_or_loss, ','),
+            "holding_quantity" : format(stock_balance.holding_quantity, ','),
+            "purchase_unit_price" : format(stock_balance.purchase_unit_price, ','),
+            "purchase_amount" : format(purchase_amount, ','),
+            "profit_or_loss_rate" : round(profit_or_loss_rate, 2),
         })
     return res_stock_balance 
 
