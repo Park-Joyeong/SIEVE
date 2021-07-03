@@ -1,18 +1,16 @@
 const $itemInterestList = document.querySelector(".item-interest-list");
 
-window.onload = (event) => {
-
+document.addEventListener("DOMContentLoaded", () => {
 
   fetch("../../interest/json")
     .then((response) => response.json())
     .then((data) => {
       rtnArr = data['data'];
       renderStocksOfInterest(rtnArr)
-      candleStick.loadCandlestick({companyCode:rtnArr[0]['company_code'], companyName:rtnArr[0]['company_name']});
+      candleStick.loadCandlestick({ companyCode: rtnArr[0]['company_code'], companyName: rtnArr[0]['company_name'] });
     });
 
-};
-
+});
 function renderStocksOfInterest(stocksOfInterest) {
   var parent = document.querySelector("#contents-interest-company");
 
