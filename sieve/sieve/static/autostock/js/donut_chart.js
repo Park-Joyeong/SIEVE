@@ -1,4 +1,4 @@
-let data = {
+const data = {
   labels: [],
   datasets: [{
     data: [],
@@ -35,7 +35,6 @@ function renderDonutChart(obj) {
 
 
 function getTotalPrice(arrStockBalance) {
-  console.log(Chart.defaults.global.colours)
 
   let totalPrice = 0;//총 매입금액
   arrStockBalance.forEach(stock => {
@@ -68,6 +67,8 @@ const config = {
 
       datalabels: {
         color: '#ffffff',
+        textShadowBlur: 5,
+        textShadowColor: '#000000',
         formatter: (value) => {
           return Math.round(value / totalPrice * 1000) / 10 + '%';
         }
