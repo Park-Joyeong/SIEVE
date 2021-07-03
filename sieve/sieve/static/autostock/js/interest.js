@@ -8,6 +8,7 @@ window.onload = (event) => {
     .then((data) => {
       rtnArr = data['data'];
       renderStocksOfInterest(rtnArr)
+      candleStick.loadCandlestick({companyCode:rtnArr[0]['company_code'], companyName:rtnArr[0]['company_name']});
     });
 
 };
@@ -15,7 +16,7 @@ window.onload = (event) => {
 function renderStocksOfInterest(stocksOfInterest) {
   var parent = document.querySelector("#contents-interest-company");
 
-  stocksOfInterest.forEach( obj => {
+  stocksOfInterest.forEach(obj => {
     var item = $itemInterestList.cloneNode(true);
     var spanCompanyName = item.getElementsByClassName("company-name");
     var spanCode = item.getElementsByClassName("code");
@@ -37,4 +38,15 @@ function renderStocksOfInterest(stocksOfInterest) {
 
 function goToEditPage() {
   window.location.href = "/interest/edit";
+}
+
+function showCandleChart(dom) {
+  obj = {};
+  clickedCompanyCode = dom.getElementsByClassName("code")[0].innerHTML;
+  clickedCompanyName = dom.getElementsByClassName("company-name")[0].innerHTML;
+  obj['companyCode'] = clickedCompanyCode;
+  obj['companyName'] = clickedCompanyName;
+
+  candleStick.loadCandlestick(obj);
+
 }
