@@ -49,5 +49,15 @@ button:focus {
 /* entire scrollbar */
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 7px;
+    border: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 110, 252, 0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: white;
 }
