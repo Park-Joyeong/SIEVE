@@ -11,13 +11,15 @@
   <div class="wrapper">
     <div class="flex-container">
       <!-- 도넛 차트 -->
-      <div class="flex-item">{% include "./donut_chart.html" %}</div>
+      <div class="flex-item donut-chart">
+        {% include "./donut_chart.html" %}
+      </div>
       <!-- 주식 차트 -->
       <div class="flex-item">{% include "./candlestick_chart.html" %}</div>
     </div>
     <div class="flex-container">
       <!-- 주식 잔고, 실시간 계좌 잔고 -->
-      <div class="flex-item">{% include "./balance.html" %}</div>
+      <div class="flex-item balance">{% include "./balance.html" %}</div>
 
       <!-- 관심 종목 -->
       <div class="flex-item">{% include "./interest.html" %}</div>

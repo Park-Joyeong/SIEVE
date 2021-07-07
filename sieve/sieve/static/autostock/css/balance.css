@@ -6,21 +6,47 @@
 
 .balance-table {
     width: 100%;
-    background: white;
     border-collapse: collapse;
     border: 1px solid rgba(238, 238, 238, 0.75);
+    background: white;
     box-sizing: border-box;
     border-radius: 3px;
     font-size: 12px;
 }
 
+.balance-thead {
+    float: left;
+    width: 100%;
+}
+
+.balance-thead tr {
+    display: table;
+    width: 100%;
+}
+
 .balance-thead th {
+    width: 25%;
     text-align: center;
     background: rgba(238, 238, 238, 0.75);
     border-radius: 3px 3px 0px 0px;
 }
 
+.balance-tbody {
+    overflow-y: auto;
+    overflow-x: hidden;
+    float: left;
+    width: 100%;
+    height: 80.5px;
+    box-sizing: border-box;
+}
+
+.balance-tbody tr {
+    display: table;
+    width: 100%;
+}
+
 .balance-tbody td {
+    width: 25%;
     text-align: right;
     padding-right: 7px;
 }
