@@ -52,9 +52,51 @@ const showStockBalance = async() => {
     $balanceTbody.innerHTML = output;
 };
 
+const fetchAccountBalance = async() => {
+    let url = "../account_balance/json";
+    let response = await fetch(url, {
+        method: "GET",
+    });
+
+    const results = await response.json();
+    const accountBalance = await results.account_balance;
+    return accountBalance; // StockBalance Array
+};
+
+const showAccountBalance = async() => {
+    const accountBalance = await fetchAccountBalance();
+    const $accountTbody = document.querySelector(".account-tbody");
+    let output = ``;
+    if (accountBalance.length === 0) {
+        output += `
+            <tr class="account-balance">
+                <td rowspan="2" class="d-none"></td>
+                <td class="account-number"></td>
+                <td class="total-evaluation-amount"></td>
+                <td class="total-valuation-profit-or-loss"></td>
+                <td class="rate-of-return"></td>
+            </tr>
+        `;
+    } else {
+        output = ``;
+        output += `
+            <tr class="account-balance">
+                <td rowspan="2" class="d-none"></td>
+                <td class="account-number">${accountBalance.account_number}</td>
+                <td class="total-evaluation-amount">${accountBalance.total_evaluation_amount}</td>
+                <td class="total-valuation-profit-or-loss">${accountBalance.total_valuation_profit_or_loss}</td>
+                <td class="rate-of-return">${accountBalance.rate_of_return}</td>
+            </tr>
+        `;
+    }
+
+    $accountTbody.innerHTML = output;
+};
+
 // 1. DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
     showStockBalance();
+    showAccountBalance();
 });
 
 // 2. 주식 매수 후 이벤트 발생

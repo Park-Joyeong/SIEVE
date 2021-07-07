@@ -1,10 +1,16 @@
-.balance-title {
+.wrapper-account {
+    margin-top: 15px;
+}
+
+.balance-title,
+.account-title {
     font-size: 12px;
     font-weight: bold;
     color: #006efc;
 }
 
-.balance-table {
+.balance-table,
+.account-table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid rgba(238, 238, 238, 0.75);
@@ -14,17 +20,20 @@
     font-size: 12px;
 }
 
-.balance-thead {
+.balance-thead,
+.account-thead {
     float: left;
     width: 100%;
 }
 
-.balance-thead tr {
+.balance-thead tr,
+.account-thead tr {
     display: table;
     width: 100%;
 }
 
-.balance-thead th {
+.balance-thead th,
+.account-thead th {
     width: 25%;
     text-align: center;
     background: rgba(238, 238, 238, 0.75);
@@ -40,12 +49,23 @@
     box-sizing: border-box;
 }
 
-.balance-tbody tr {
+.account-tbody {
+    overflow-y: auto;
+    overflow-x: hidden;
+    float: left;
+    width: 100%;
+    height: 21px;
+    box-sizing: border-box;
+}
+
+.balance-tbody tr,
+.account-tbody tr {
     display: table;
     width: 100%;
 }
 
-.balance-tbody td {
+.balance-tbody td,
+.account-tbody td {
     width: 25%;
     text-align: right;
     padding-right: 7px;
