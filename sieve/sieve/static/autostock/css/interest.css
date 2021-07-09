@@ -79,7 +79,6 @@
     font-size: 12px;
     line-height: 14px;
     float: right;
-    color: #006EFC;
 }
 
 .updated {
@@ -88,7 +87,6 @@
     font-weight: normal;
     font-size: 10px;
     line-height: 12px;
-    color: #006EFC;
 }
 
 .category {
@@ -98,7 +96,10 @@
     font-size: 12px;
     line-height: 14px;
     float: right;
-    color: #006EFC;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .btn-interest-edit {

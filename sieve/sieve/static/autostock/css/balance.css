@@ -70,3 +70,13 @@
     text-align: right;
     padding-right: 7px;
 }
+
+.balance-tbody td.gain,
+.account-tbody td.gain {
+    color: red;
+}
+
+.balance-tbody td.loss,
+.account-tbody td.loss {
+    color: blue;
+}

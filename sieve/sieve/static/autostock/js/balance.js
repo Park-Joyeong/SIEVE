@@ -1,4 +1,4 @@
-const fetchStockBalance = async() => {
+const fetchStockBalance = async () => {
     let url = "../stock_balance/json";
     let response = await fetch(url, {
         method: "GET",
@@ -9,7 +9,7 @@ const fetchStockBalance = async() => {
     return stockBalance; // StockBalance Array
 };
 
-const showStockBalance = async() => {
+const showStockBalance = async () => {
     const stockBalance = await fetchStockBalance();
     const $balanceTbody = document.querySelector(".balance-tbody");
     let output = ``;
@@ -32,19 +32,24 @@ const showStockBalance = async() => {
     } else {
         output = ``;
         for (var i = 0; i < stockBalance.length; i++) {
+            const rate = stockBalance[i].profit_or_loss_rate;
+            let gainOrLoss = '';
+            if (rate > 0) gainOrLoss = 'gain';
+            else if (rate < 0) gainOrLoss = 'loss';
+
             output += `
-                <tr class="stock-balance">
+                <tr class="stock-balance" onClick="candleStick.loadCandlestick({ companyCode: '${stockBalance[i].company_code}', companyName: '${stockBalance[i].company_name}' });">
                     <td rowspan="2" class="d-none"></td>
                     <td class="company-name">${stockBalance[i].company_name}</td>
                     <td class="current-price">${stockBalance[i].current_price}</td>
                     <td class="evaluation-amount">${stockBalance[i].evaluation_amount}</td>
-                    <td class="valuation-profit-or-loss">${stockBalance[i].valuation_profit_or_loss}</td>
+                    <td class="valuation-profit-or-loss ${gainOrLoss}">${stockBalance[i].valuation_profit_or_loss}</td>
                 </tr>
-                <tr class="stock-balance">
+                <tr class="stock-balance" onClick="candleStick.loadCandlestick({ companyCode: '${stockBalance[i].company_code}', companyName: '${stockBalance[i].company_name}' });">
                     <td class="holding-quantity">${stockBalance[i].holding_quantity}</td>
                     <td class="purchase-unit-price">${stockBalance[i].purchase_unit_price}</td>
                     <td class="purchase-amount">${stockBalance[i].purchase_amount}</td>
-                    <td class="profit-or-loss-rate">손익률</td>
+                    <td class="profit-or-loss-rate ${gainOrLoss}">${stockBalance[i].profit_or_loss_rate}</td>
                 </tr>
             `;
         }
@@ -52,7 +57,7 @@ const showStockBalance = async() => {
     $balanceTbody.innerHTML = output;
 };
 
-const fetchAccountBalance = async() => {
+const fetchAccountBalance = async () => {
     let url = "../account_balance/json";
     let response = await fetch(url, {
         method: "GET",
@@ -63,7 +68,7 @@ const fetchAccountBalance = async() => {
     return accountBalance; // StockBalance Array
 };
 
-const showAccountBalance = async() => {
+const showAccountBalance = async () => {
     const accountBalance = await fetchAccountBalance();
     const $accountTbody = document.querySelector(".account-tbody");
     let output = ``;
