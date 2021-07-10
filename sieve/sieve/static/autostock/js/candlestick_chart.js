@@ -30,6 +30,12 @@ const candleStick = {
         resultArr.sort(function(a, b){return a[0] - b[0]});
 
         const chart = Highcharts.stockChart("container", {
+          plotOptions: {
+            candlestick: {
+                       color: '#1b61d1',
+                       upColor: '#f51818',
+                   }
+               },
           rangeSelector: {
             selected: 1,
           },
