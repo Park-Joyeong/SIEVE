@@ -83,20 +83,26 @@ const showAccountBalance = async () => {
             </tr>
         `;
     } else {
+        const rate = accountBalance.rate_of_return;
+        let gainOrLoss = '';
+        if (rate > 0) gainOrLoss = 'gain';
+        else if (rate < 0) gainOrLoss = 'loss';
         output = ``;
         output += `
             <tr class="account-balance">
                 <td rowspan="2" class="d-none"></td>
                 <td class="account-number">${accountBalance.account_number}</td>
-                <td class="total-evaluation-amount">${accountBalance.total_evaluation_amount}</td>
-                <td class="total-valuation-profit-or-loss">${accountBalance.total_valuation_profit_or_loss}</td>
-                <td class="rate-of-return">${accountBalance.rate_of_return}</td>
+                <td class="total-evaluation-amount">${numberWithCommas(accountBalance.total_evaluation_amount)}</td>
+                <td class="total-valuation-profit-or-loss ${gainOrLoss}">${numberWithCommas(accountBalance.total_valuation_profit_or_loss)}</td>
+                <td class="rate-of-return ${gainOrLoss}">${accountBalance.rate_of_return}</td>
             </tr>
         `;
     }
 
     $accountTbody.innerHTML = output;
 };
+
+const numberWithCommas = x => { return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 
 // 1. DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
