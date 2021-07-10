@@ -1,4 +1,11 @@
+.donut-chart-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #006efc;
+}
+
 .donut-chart {
     display: block;
     width: 100%;
 }
+
