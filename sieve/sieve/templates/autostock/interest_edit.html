@@ -24,7 +24,7 @@
             <div class="area-list-title">
                 <span class="text-stocks-list-title">전체 종목</span>
             </div>
-            <div id="contents-listed-company" class="contents-listed-company area-content-list">
+            <div id="contents-listed-company" class="contents-listed-company area-content-list" ondrop="drop(event)" ondragover="allowDrop(event)">
 
             </div>
         </div>
@@ -32,14 +32,14 @@
             <div class="area-list-title">
                 <span class="text-stocks-list-title">관심 종목</span>
             </div>
-            <div id="contents-interest-company" class="contents-interest-company area-content-list">
+            <div id="contents-interest-company" class="contents-interest-company area-content-list" ondrop="drop(event)" ondragover="allowDrop(event)">
 
             </div>
         </div>
         <button onclick="save()">저장</button>
     </div> <!-- End of .wrapper-->
 
-    <div class="list-item" ondblclick="onDoubleClicked(this);">
+    <div class="list-item" ondblclick="onDoubleClicked(this);" draggable="true" ondragstart="drag(event)">
         <div>
             <span class="company-name"></span>
             <span class="code"></span>

@@ -3,6 +3,8 @@ const $csrfmiddlewaretoken = document.querySelector(
 );
 const $listItem = document.querySelector(".list-item");
 let listedCompany; //관심종목의 companyname, updated, category을 찾기위한 용도
+let draggedDOM;
+let sourceDivID;
 
 function componentRendering(obj) {
   listedCompany = obj["listedCompany"];
@@ -133,9 +135,9 @@ function onDoubleClicked(dom) {
 function save() {
   let formData = new FormData();
   let selected = [];
-  
+
   var parent = document.querySelectorAll("#contents-interest-company > div");
-  for(var i=0; i < parent.length; i++){
+  for (var i = 0; i < parent.length; i++) {
     selected.push(parent[i].querySelector(".code").innerHTML);
   }
 
@@ -149,12 +151,59 @@ function save() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if(data.is_success == true) {
+      if (data.is_success == true) {
         alert('저장완료.');
         window.location.href = "/dashboard/show";
-      } else {
-        console.log('false');
       }
-      
+
     });
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  draggedDOM = ev.target;
+  sourceDivID = ev.target.id;
+  if (sourceDivID === '') {
+    sourceDivID = findParentBySelector(ev.target, ".area-content-list").id;
+  }
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  let targetDivID = ev.target.id;
+  if (targetDivID === '') {
+    targetDivID = findParentBySelector(ev.target, ".area-content-list").id;
+  }
+
+
+  if (
+    (sourceDivID === 'contents-listed-company'
+      && targetDivID === 'contents-interest-company')//Add
+    ||
+    (sourceDivID === 'contents-interest-company'
+      && targetDivID === 'contents-listed-company')//Remove
+  ) {
+    onDoubleClicked(draggedDOM);
+  }
+
+
+
+}
+
+function collectionHas(a, b) { //helper function (see below)
+  for (var i = 0, len = a.length; i < len; i++) {
+    if (a[i] == b) return true;
+  }
+  return false;
+}
+function findParentBySelector(elm, selector) {
+  var all = document.querySelectorAll(selector);
+  var cur = elm.parentNode;
+  while (cur && !collectionHas(all, cur)) { //keep going up until you find a match
+    cur = cur.parentNode; //go up
+  }
+  return cur; //will return null if not found
 }
