@@ -7,19 +7,10 @@ const data = {
 };
 let totalPrice = 0;
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("../stock_balance/json")
-    .then((response) => response.json())
-    .then((data) => {
-      renderDonutChart(data);
-    });
-});
+function renderDonutChart(stockBalance) {
+  totalPrice = getTotalPrice(stockBalance);
 
-function renderDonutChart(obj) {
-  const arrStockBalance = obj.stock_balance;
-  totalPrice = getTotalPrice(arrStockBalance);
-
-  arrStockBalance.forEach(stock => {
+  stockBalance.forEach(stock => {
     data.labels.push(stock.company_name);
     data.datasets[0].data.push(parseInt(stock.purchase_amount.replace(',', '')));
     data.datasets[0].backgroundColor.push(getRandomColorString());

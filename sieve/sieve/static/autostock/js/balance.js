@@ -1,16 +1,5 @@
-const fetchStockBalance = async () => {
-    let url = "../stock_balance/json";
-    let response = await fetch(url, {
-        method: "GET",
-    });
 
-    const results = await response.json();
-    const stockBalance = await results.stock_balance;
-    return stockBalance; // StockBalance Array
-};
-
-const showStockBalance = async () => {
-    const stockBalance = await fetchStockBalance();
+const showStockBalance = (stockBalance) => {
     const $balanceTbody = document.querySelector(".balance-tbody");
     let output = ``;
     if (stockBalance.length === 0) {
@@ -106,7 +95,6 @@ const numberWithCommas = x => { return x.toString().replace(/\B(?=(\d{3})+(?!\d)
 
 // 1. DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
-    showStockBalance();
     showAccountBalance();
 });
 
