@@ -1,14 +1,15 @@
 .wrapper-border {
-    width: 100%;
     margin: auto;
-    margin-bottom: 20px;
-    box-shadow: 18px 0 25px -18px rgb(0 0 0 / 12%), -18px 0 25px -18px rgb(0 0 0 / 12%);
+    height: calc(100vh - 50px);
 }
 
 .wrapper {
     display: block;
     width: 360px;
     margin: auto;
+    position: relative;
+    top: 20px;
+    box-shadow: 18px 0 25px -18px rgb(0 0 0 / 12%), -18px 0 25px -18px rgb(0 0 0 / 12%);
 }
 
 .signin-logo {
@@ -28,6 +29,7 @@
 
 .signin-form {
     display: block;
+    font-size: 0.9em;
     width: 360px;
     margin: auto;
     color: #006efc;
@@ -83,9 +85,10 @@ button {
 
 @media (min-width: 768px) {
     .wrapper {
-        width: 480px;
+        width: 360px;
     }
     .signin-form {
-        width: 480px;
+        font-size: 0.9em;
+        width: 360px;
     }
 }
