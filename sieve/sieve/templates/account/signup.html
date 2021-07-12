@@ -1,9 +1,8 @@
-{% extends "../base/layout.html" %} {% load static %}
+{% extends "../base/signup_layout.html" %} {% load static %}
 
 <!-- css -->
 {% block extrahead %}
-<link rel="stylesheet" href="../../static/account/css/signup.css" />
-{% endblock %}
+<link rel="stylesheet" href="../../static/account/css/signup.css" /> {% endblock %}
 
 <!-- title -->
 {% block title %} Sieve :: Sign Up {% endblock %}
@@ -11,23 +10,29 @@
 <!-- contents -->
 {% block contents %}
 <div class="wrapper-border">
-  <div class="wrapper">
-    <div class="signup-logo">
-      <img src="{% static 'images/logo-text.png' %}" class="logo-text" />
+    <div class="wrapper signup-intro-bg">
+        <div class="signup-intro">
+            <div class="signup-intro-title">
+                <h1 style="font-size: 30px;"><span class="text-white">Welcome to</span><span class="text-white"> sieve.</span></h1>
+                <h1><span class="text-white" style="font-size: 25px;">Let's do the automatic transaction everyday.</span></h1>
+            </div>
+            <div class="signup-intro-p">
+                <p>Plan your activities and watch your progress online.</p>
+            </div>
+        </div>
     </div>
+    <div class="wrapper">
+        <div class="signup-logo">
+            Create Account
+            <!-- <img src="{% static 'images/logo-text.png' %}" class="logo-text" /> -->
+        </div>
 
-    <div class="signup-form">
-      <form
-        action="{% url 'account:signup' %}"
-        id="formSignUp"
-        method="POST"
-        onsubmit="formValid(event);return false;"
-      >
-        {% csrf_token %}
-        <div class="signup-form-item">
-          <label for="email">이메일</label>&nbsp;
-          <span id="email-error" class="signup-error"
-            >※올바른 이메일형식이 아닙니다.</span
+        <div class="signup-form">
+            <form action="{% url 'account:signup' %}" id="formSignUp" method="POST" onsubmit="formValid(event);return false;">
+                {% csrf_token %}
+                <div class="signup-form-item">
+                    <label for="email">이메일</label>&nbsp;
+                    <span id="email-error" class="signup-error">※올바른 이메일형식이 아닙니다.</span
           >
           <div>
             <input
