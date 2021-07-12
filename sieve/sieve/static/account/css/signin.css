@@ -1,6 +1,12 @@
+body {
+    background-image: url("../../images/signin-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .wrapper-border {
     margin: auto;
-    height: calc(100vh - 50px);
+    height: calc(100% - 50px);
 }
 
 .wrapper {
