@@ -62,7 +62,8 @@ button:focus {
     background-color: white;
 }
 
-.contents {
+
+/* .contents {
     overflow-x: hidden;
     width: calc(100vw - 7px);
-}
+} */

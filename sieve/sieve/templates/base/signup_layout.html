@@ -16,6 +16,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="../../static/base/css/base.css" />
+    <link rel="stylesheet" href="../../static/base/css/nav.css" />
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logo-circle.png' %}" /> {% block extrahead %} {% endblock %}
     <style>
         .container,
@@ -32,7 +33,9 @@
     <div class="container">
         <div class="row">
             <div class="div-col col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="contents">{% block contents %} {% endblock %}</div>
+                <div class="contents">
+                    {% include "./nav.html" %} {% block contents %} {% endblock %}
+                </div>
             </div>
         </div>
     </div>

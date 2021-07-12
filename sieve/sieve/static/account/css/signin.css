@@ -3,16 +3,12 @@
     margin: auto;
     margin-bottom: 20px;
     box-shadow: 18px 0 25px -18px rgb(0 0 0 / 12%), -18px 0 25px -18px rgb(0 0 0 / 12%);
-    position: relative;
-    top: 10vh;
 }
 
 .wrapper {
     display: block;
     width: 360px;
     margin: auto;
-    position: relative;
-    /* top: 12vh; */
 }
 
 .signin-logo {
