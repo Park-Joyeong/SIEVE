@@ -38,14 +38,6 @@ button:focus {
 }
 
 
-/* layout */
-
-.contents {
-    /* width: 100%;
-    margin: auto; */
-}
-
-
 /* entire scrollbar */
 
 ::-webkit-scrollbar {
@@ -61,9 +53,3 @@ button:focus {
 ::-webkit-scrollbar-track {
     background-color: white;
 }
-
-
-/* .contents {
-    overflow-x: hidden;
-    width: calc(100vw - 7px);
-} */

@@ -1,13 +1,12 @@
 .wrapper-border {
     width: 100%;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid rgba(0, 110, 252, 0.25);
     border-radius: 10px;
-    box-shadow: 0 30px 60px -10px rgb(0 0 0 / 10%),
-        0 18px 36px -18px rgb(0 0 0 / 12%);
+    box-shadow: 0 30px 60px -10px rgb(0 0 0 / 10%), 0 18px 36px -18px rgb(0 0 0 / 12%);
     position: relative;
-    top: 10vh;
+    top: 10px
 }
 
 .wrapper {
@@ -32,15 +31,15 @@
 }
 
 .wrapper-title {
-    height: 30px;
+    padding-top: 5px;
 }
 
 .text-menu-title {
     font-family: Verdana;
     font-style: normal;
     font-weight: bold;
-    font-size: 16px;
-    height: 26.67px;
+    font-size: 14px;
+    /* height: 26.67px; */
     color: #006efc;
     margin: 10px;
 }
@@ -129,7 +128,7 @@
     background: #006efc;
 }
 
-.active > div > span {
+.active>div>span {
     color: #ffffff;
 }
 
@@ -138,13 +137,6 @@
 }
 
 @media (min-width: 768px) {
-    .wrapper-title {
-        background: #006efc;
-    }
-    .wrapper-title > .text-menu-title {
-        color: #ffffff;
-        padding: 5px 0px 0px 10px;
-    }
     .container-listed-company,
     .container-stocks-of-interest {
         display: inline-block;

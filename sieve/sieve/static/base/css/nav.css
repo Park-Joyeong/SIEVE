@@ -4,11 +4,11 @@
     background-color: #006efc;
 }
 
-.navbar-nav {
-    color: #006efc;
+.nav-menu-item {
+    color: white;
+    font-weight: bold;
 }
 
-.nav-menu-item {
-    color: #006efc;
-    font-weight: bold;
+.form-inline button {
+    margin-top: 0;
 }
