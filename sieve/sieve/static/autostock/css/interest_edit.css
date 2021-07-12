@@ -4,7 +4,8 @@
     margin-bottom: 20px;
     border: 1px solid rgba(0, 110, 252, 0.25);
     border-radius: 10px;
-    box-shadow: 0 30px 60px -10px rgb(0 0 0 / 10%), 0 18px 36px -18px rgb(0 0 0 / 12%);
+    box-shadow: 0 30px 60px -10px rgb(0 0 0 / 10%),
+        0 18px 36px -18px rgb(0 0 0 / 12%);
     position: relative;
     top: 10vh;
 }
@@ -16,7 +17,7 @@
     width: 100%;
 }
 
-button {
+.save-btn {
     display: block;
     width: 80%;
     height: 39px;
@@ -128,20 +129,20 @@ button {
     background: #006efc;
 }
 
-.active>div>span {
+.active > div > span {
     color: #ffffff;
 }
 
 .contents-interest-company span {
-    color: #006EFC;
+    color: #006efc;
 }
 
 @media (min-width: 768px) {
     .wrapper-title {
-        background: #006EFC;
+        background: #006efc;
     }
-    .wrapper-title>.text-menu-title {
-        color: #FFFFFF;
+    .wrapper-title > .text-menu-title {
+        color: #ffffff;
         padding: 5px 0px 0px 10px;
     }
     .container-listed-company,
@@ -160,7 +161,7 @@ button {
         margin-right: 10px;
         margin-bottom: 10px;
     }
-    button {
+    .save-btn {
         margin-bottom: 10px;
         /*화면이 커지면 위에 div들이 inline-block으로 바뀌면서 마진을 바꿔줘야함*/
     }
