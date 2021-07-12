@@ -1,11 +1,13 @@
 .wrapper-border {
     width: 100vw;
     margin: auto;
+    height: 100vh;
 }
 
 .wrapper {
     display: block;
     width: 100%;
+    height: 100%;
 }
 
 .signup-intro-bg {}
