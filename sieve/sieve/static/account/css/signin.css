@@ -1,12 +1,14 @@
+html,
 body {
-    background-image: url("../../images/signin-bg.jpg");
-    background-repeat: no-repeat;
+    background: url("../../images/signin-bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 
 .wrapper-border {
     margin: auto;
-    height: calc(100% - 50px);
 }
 
 .wrapper {
