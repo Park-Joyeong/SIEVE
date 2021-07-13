@@ -1,10 +1,29 @@
 const $csrfmiddlewaretoken = document.querySelector(
   "input[name=csrfmiddlewaretoken]"
 );
+
 const $listItem = document.querySelector(".list-item");
 let listedCompany; //관심종목의 companyname, updated, category을 찾기위한 용도
 let draggedDOM;
 let sourceDivID;
+
+/* 전체 종목 검색 이벤트 발생 시, 검색 결과 종목 */
+function componentRenderingSearch(obj, word) {
+  listedCompany = obj["listedCompany"];
+  let newListedCompany = [];
+  for (var i=0; i<listedCompany.length; i++) {
+    if (listedCompany[i].fields.company_name.includes(word)) {
+      newListedCompany.push(listedCompany[i]);
+    }
+  }
+  console.log(newListedCompany);
+  const $contentsListedCompany = document.querySelector("#contents-listed-company");
+  $contentsListedCompany.innerHTML = "";
+  renderListedCompany(newListedCompany);
+  obj["stocksOfInterest"].forEach((obj) => {
+    setActiveCompanyList(obj.fields.company_code);
+  });
+}
 
 function componentRendering(obj) {
   listedCompany = obj["listedCompany"];

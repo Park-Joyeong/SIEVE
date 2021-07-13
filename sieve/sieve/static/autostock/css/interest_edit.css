@@ -30,6 +30,12 @@
     margin: 10px auto 10px auto;
 }
 
+.wrapper-header {}
+
+.wrapper-header div {
+    display: block;
+}
+
 .wrapper-title {
     padding-top: 5px;
 }
@@ -42,6 +48,22 @@
     /* height: 26.67px; */
     color: #006efc;
     margin: 10px;
+}
+
+.wrapper-search {
+    width: 200px;
+    margin: 10px 10px 0 0;
+    font-size: 12px;
+}
+
+.wrapper-search input {
+    width: 100%;
+    height: 30px;
+    padding-left: 20px;
+    border: 1px solid rgba(0, 110, 252, 0.25);
+    box-sizing: border-box;
+    border-radius: 20px;
+    color: #006efc;
 }
 
 .container-listed-company,

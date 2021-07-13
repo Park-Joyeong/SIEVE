@@ -1,24 +1,41 @@
-{% extends "../base/layout.html" %} {% load static %}
-
-{% block extrahead %}
+{% extends "../base/layout.html" %} {% load static %} {% block extrahead %}
 <link rel="stylesheet" href="{% static 'autostock/css/interest_edit.css' %}" />
 <script>
     window.onload = (event) => {
         var listedCompany = JSON.parse('{{ listed_company | safe }}')
         var stocksOfInterest = JSON.parse('{{ stocks_of_interest | safe }}')
-        componentRendering({ listedCompany: listedCompany, stocksOfInterest: stocksOfInterest });
-    };
-</script>
-{% endblock %}
 
-{% block title %}Sieve :: Interest Edit{% endblock %}
+        componentRendering({
+            listedCompany: listedCompany,
+            stocksOfInterest: stocksOfInterest
+        });
+    };
+
+    const searchCompany = (e) => {
+        var listedCompany = JSON.parse('{{ listed_company | safe }}')
+        var stocksOfInterest = JSON.parse('{{ stocks_of_interest | safe }}')
+        $searchCompany = document.querySelector("#searchCompany");
+        if (window.event.keyCode == 13) {
+            componentRenderingSearch({
+                listedCompany: listedCompany,
+                stocksOfInterest: stocksOfInterest
+            }, $searchCompany.value);
+        }
+    }
+</script>
+{% endblock %} {% block title %}Sieve :: Interest Edit{% endblock %}
 </head>
 
 {% block contents %}
 <div class="wrapper-border">
     <div class="wrapper">
-        <div class="wrapper-title">
-            <h2 class="text-menu-title">관심 종목 설정하기</h2>
+        <div class="wrapper-header d-flex justify-content-between">
+            <div class="wrapper-title">
+                <h2 class="text-menu-title">관심 종목 설정하기</h2>
+            </div>
+            <div class="wrapper-search">
+                <input type="text" id="searchCompany" placeholder="전체 종목에서 검색" onkeyup="searchCompany(this)" />
+            </div>
         </div>
         <div class="container-listed-company">
             <div class="area-list-title">
@@ -37,7 +54,8 @@
             </div>
         </div>
         <button class="save-btn" onclick="save()">저장</button>
-    </div> <!-- End of .wrapper-->
+    </div>
+    <!-- End of .wrapper-->
 
     <div class="list-item" ondblclick="onDoubleClicked(this);" draggable="true" ondragstart="drag(event)">
         <div>
@@ -49,11 +67,9 @@
             <span class="category"></span>
         </div>
     </div>
-</div> <!-- End of .wrapper-border -->
+</div>
+<!-- End of .wrapper-border -->
 
-{% csrf_token %}
-{% endblock %}
-
-{% block extra_js %}
+{% csrf_token %} {% endblock %} {% block extra_js %}
 <script src="{% static 'autostock/js/interest_edit.js' %}"></script>
 {% endblock %}
