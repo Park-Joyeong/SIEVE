@@ -6,10 +6,12 @@
 
 html {
     font-size: 16px;
+    overflow: overlay;
 }
 
 body {
     background: linear-gradient(120deg, white, aliceblue);
+    overflow: overlay;
 }
 
 .font12 {
@@ -41,13 +43,13 @@ button:focus {
 /* entire scrollbar */
 
 ::-webkit-scrollbar {
-    width: 7px;
+    width: 5px;
     border: none;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: rgba(0, 110, 252, 0.5);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-track {
