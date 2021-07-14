@@ -1,5 +1,9 @@
 body {
-    background: linear-gradient(150deg, white, #d4dcff);
+    background: linear-gradient(150deg, white, #d4dcff) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     overflow: overlay;
 }
 
