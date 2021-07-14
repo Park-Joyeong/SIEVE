@@ -1,4 +1,83 @@
-.balance-table {
-    width: 50vw;
+.wrapper-account {
+    margin-top: 15px;
+}
+
+.balance-title,
+.account-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #006efc;
+}
+
+.balance-table,
+.account-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(238, 238, 238, 0.75);
     background: white;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.balance-thead,
+.account-thead {
+    float: left;
+    width: 100%;
+}
+
+.balance-thead tr,
+.account-thead tr {
+    display: table;
+    width: 100%;
+}
+
+.balance-thead th,
+.account-thead th {
+    width: 25%;
+    text-align: center;
+    background: rgba(238, 238, 238, 0.75);
+    border-radius: 3px 3px 0px 0px;
+}
+
+.balance-tbody {
+    overflow-y: auto;
+    overflow-x: hidden;
+    float: left;
+    width: 100%;
+    height: 80.5px;
+    box-sizing: border-box;
+}
+
+.account-tbody {
+    overflow-y: auto;
+    overflow-x: hidden;
+    float: left;
+    width: 100%;
+    height: 21px;
+    box-sizing: border-box;
+}
+
+.balance-tbody tr,
+.account-tbody tr {
+    display: table;
+    width: 100%;
+}
+
+.balance-tbody td,
+.account-tbody td {
+    width: 25%;
+    text-align: right;
+    padding-right: 7px;
+    box-sizing: border-box;
+}
+
+.balance-tbody td.gain,
+.account-tbody td.gain {
+    color: red;
+}
+
+.balance-tbody td.loss,
+.account-tbody td.loss {
+    color: blue;
 }

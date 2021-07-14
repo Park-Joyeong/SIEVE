@@ -1,0 +1,12 @@
+.nav-menu-item {
+    color: #006efc !important;
+    font-weight: bold;
+}
+
+.navbar-toggler span {
+    width: 30px;
+}
+
+.form-inline button {
+    margin-top: 0;
+}

@@ -1,4 +1,10 @@
+.candlestick-chart-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #006efc;
+}
+
 .candlestick-chart {
     display: block;
-    width: 50vw;
+    width: 100%;
 }

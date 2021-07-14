@@ -1,8 +1,29 @@
 const $csrfmiddlewaretoken = document.querySelector(
   "input[name=csrfmiddlewaretoken]"
 );
+
 const $listItem = document.querySelector(".list-item");
 let listedCompany; //관심종목의 companyname, updated, category을 찾기위한 용도
+let draggedDOM;
+let sourceDivID;
+
+/* 전체 종목 검색 이벤트 발생 시, 검색 결과 종목 */
+function componentRenderingSearch(obj, word) {
+  listedCompany = obj["listedCompany"];
+  let newListedCompany = [];
+  for (var i=0; i<listedCompany.length; i++) {
+    if (listedCompany[i].fields.company_name.includes(word)) {
+      newListedCompany.push(listedCompany[i]);
+    }
+  }
+  console.log(newListedCompany);
+  const $contentsListedCompany = document.querySelector("#contents-listed-company");
+  $contentsListedCompany.innerHTML = "";
+  renderListedCompany(newListedCompany);
+  obj["stocksOfInterest"].forEach((obj) => {
+    setActiveCompanyList(obj.fields.company_code);
+  });
+}
 
 function componentRendering(obj) {
   listedCompany = obj["listedCompany"];
@@ -133,9 +154,9 @@ function onDoubleClicked(dom) {
 function save() {
   let formData = new FormData();
   let selected = [];
-  
+
   var parent = document.querySelectorAll("#contents-interest-company > div");
-  for(var i=0; i < parent.length; i++){
+  for (var i = 0; i < parent.length; i++) {
     selected.push(parent[i].querySelector(".code").innerHTML);
   }
 
@@ -149,12 +170,59 @@ function save() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if(data.is_success == true) {
+      if (data.is_success == true) {
         alert('저장완료.');
         window.location.href = "/dashboard/show";
-      } else {
-        console.log('false');
       }
-      
+
     });
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  draggedDOM = ev.target;
+  sourceDivID = ev.target.id;
+  if (sourceDivID === '') {
+    sourceDivID = findParentBySelector(ev.target, ".area-content-list").id;
+  }
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  let targetDivID = ev.target.id;
+  if (targetDivID === '') {
+    targetDivID = findParentBySelector(ev.target, ".area-content-list").id;
+  }
+
+
+  if (
+    (sourceDivID === 'contents-listed-company'
+      && targetDivID === 'contents-interest-company')//Add
+    ||
+    (sourceDivID === 'contents-interest-company'
+      && targetDivID === 'contents-listed-company')//Remove
+  ) {
+    onDoubleClicked(draggedDOM);
+  }
+
+
+
+}
+
+function collectionHas(a, b) { //helper function (see below)
+  for (var i = 0, len = a.length; i < len; i++) {
+    if (a[i] == b) return true;
+  }
+  return false;
+}
+function findParentBySelector(elm, selector) {
+  var all = document.querySelectorAll(selector);
+  var cur = elm.parentNode;
+  while (cur && !collectionHas(all, cur)) { //keep going up until you find a match
+    cur = cur.parentNode; //go up
+  }
+  return cur; //will return null if not found
 }

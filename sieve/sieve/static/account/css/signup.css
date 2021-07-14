@@ -1,26 +1,54 @@
 .wrapper-border {
-    width: 100%;
+    width: 100vw;
     margin: auto;
-    margin-bottom: 20px;
-    box-shadow: 18px 0 25px -18px rgb(0 0 0 / 12%), -18px 0 25px -18px rgb(0 0 0 / 12%);
-    position: relative;
-    top: 10vh;
+    height: 100vh;
 }
 
 .wrapper {
     display: block;
-    width: 360px;
-    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.signup-intro-bg {}
+
+.signup-intro {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/logo-bg.png"), url("../../images/logo-bg.png"), linear-gradient(210deg, #3a7bd5, #00d2ff);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: top right, bottom left;
+}
+
+.signup-intro-title {
     position: relative;
-    /* top: 12vh; */
+    display: block;
+    padding-left: 70px;
+    top: 30vh;
+}
+
+.signup-intro-p {
+    position: relative;
+    display: block;
+    padding-left: 70px;
+    top: 40vh;
+}
+
+.signup-intro-p p {
+    color: white;
 }
 
 .signup-logo {
     display: block;
-    width: 200px;
+    /* width: 200px; */
+    text-align: center;
     margin: auto;
     padding-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #006efc;
 }
 
 .logo-text {
@@ -38,6 +66,7 @@
     display: block;
     width: 80%;
     margin: auto;
+    font-size: 0.9em;
     margin-bottom: 20px;
 }
 
@@ -70,7 +99,7 @@
     padding-bottom: 20px;
 }
 
-button {
+#signup-btn {
     display: block;
     width: 100%;
     height: 39px;
@@ -84,10 +113,20 @@ button {
 }
 
 @media (min-width: 768px) {
-    .wrapper {
-        width: 480px;
+    .wrapper-border {
+        display: flex;
+        width: 100vw;
+        height: calc(100vh - 50px);
     }
+    .wrapper {
+        width: 100%;
+        height: 100%;
+    }
+    .signup-intro {}
     .signup-form {
-        width: 480px;
+        width: 360px;
+    }
+    .signup-form-item {
+        font-size: 0.9em;
     }
 }

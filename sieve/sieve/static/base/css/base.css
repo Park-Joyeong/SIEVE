@@ -6,10 +6,12 @@
 
 html {
     font-size: 16px;
+    overflow: overlay;
 }
 
 body {
     background: linear-gradient(120deg, white, aliceblue);
+    overflow: overlay;
 }
 
 .font12 {
@@ -38,9 +40,18 @@ button:focus {
 }
 
 
-/* layout */
+/* entire scrollbar */
 
-.contents {
-    /* width: 100%;
-    margin: auto; */
+::-webkit-scrollbar {
+    width: 5px;
+    border: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 110, 252, 0.5);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: white;
 }

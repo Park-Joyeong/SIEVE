@@ -2,30 +2,36 @@
 
 <!-- extra head -->
 {% block extrahead %}
-<link rel="stylesheet" href="../../static/autostock/dashboard.css" />
-{% endblock %}
+<link rel="stylesheet" href="../../static/autostock/css/dashboard.css" /> {% endblock %}
+
+<!-- title -->
+{% block title %} Sieve :: Dashboard {% endblock %}
 
 <!-- block contents -->
 {% block contents %}
 <div class="wrapper-border">
-  <div class="wrapper">
-    <div class="d-flex bg-warning">
-      <!-- 도넛 차트 -->
-      <div>{% include "./donut_chart.html" %}</div>
-      <!-- 주식 차트 -->
-      <div>{% include "./candlestick_chart.html" %}</div>
-    </div>
-    <div class="d-flex bg-info">
-      <!-- 주식 잔고, 실시간 계좌 잔고 -->
-      <div>{% include "./balance.html" %}</div>
+    <div class="wrapper">
+        <div class="flex-container">
+            <!-- 도넛 차트 -->
+            <div class="flex-item donut-chart">
+                {% include "./donut_chart.html" %}
+            </div>
+            <!-- 주식 차트 -->
+            <div class="flex-item">{% include "./candlestick_chart.html" %}</div>
+        </div>
+        <div class="flex-container">
+            <!-- 주식 잔고, 실시간 계좌 잔고 -->
+            <div class="flex-item balance">{% include "./balance.html" %}</div>
 
-      <!-- 관심 종목 -->
-      <div>{% include "./interest.html" %}</div>
+            <!-- 관심 종목 -->
+            <div class="flex-item">{% include "./interest.html" %}</div>
+        </div>
     </div>
-  </div>
 </div>
 <!-- endblock contents -->
 {% endblock %}
 
 <!-- js -->
-{% block extra_js %} {% endblock %}
+{% block extra_js %}
+<script src="../../static/autostock/js/dashboard.js"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" href="/dashboard/show"><img src="{% static 'images/logo-nav.png' %}" width="30" height="30" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ml-4">
+                <a class="nav-link nav-menu-item" href="/dashboard/show">대시보드</a>
+            </li>
+            <li class="nav-item ml-4">
+                <a class="nav-link nav-menu-item" href="/interest/edit">관심종목 편집</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            {% if 'user_id' in request.session %}
+            <button class="btn btn-primary ml-4" type="button" onclick="window.location.href = '/signout';">
+              로그아웃
+            </button> {% else %}
+            <button class="btn btn-primary ml-4" type="button" onclick="window.location.href = '/signin';">
+              로그인
+            </button> {% endif %}
+        </form>
+    </div>
+</nav>
